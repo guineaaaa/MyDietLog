@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: linear-gradient(135deg, #FFFDE4 0%, #FFE87C 100%);
+    min-height: 100vh;
+    color: #6a472b;
+}
+
+/* 메인 랜딩 컨테이너 */
+.main-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 14px 58px 20px 78px;
+    min-height: 82vh;
+    box-sizing: border-box;
+    gap: 25vw;
+}
+
+/* 왼쪽 박스 */
+.left-box {
+    max-width: 480px;
+    min-width: 340px;
+    width: 32vw;
+    margin-right: 20px;
+}
+
+.left-box hr {
+    margin-bottom: 28px;
+    border: 2.3px solid #6a472b;
+    width: 85%;
+    margin-left: 0;
+}
+
+.left-box h1 {
+    font-size: 2.3rem;
+    color: #6a472b;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin: 0 0 26px 0;
+    line-height: 1.3;
+}
+
+.left-box .desc {
+    font-size: 2.0rem;
+    color: #6a472b;
+    font-weight: 700;
+    margin-bottom: 44px;
+    line-height: 1.28;
+}
+
+.left-box .main-btn {
+    background: #ffe083;
+    border: none;
+    border-radius: 28px;
+    padding: 18px 62px;
+    font-size: 1.25rem;
+    color: #6a472b;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(200, 180, 60, 0.13);
+}
+
+/* 오른쪽 오리 이미지 */
+.right-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.right-img img {
+    width: 370px;
+    max-width: 40vw;
+    min-width: 230px;
+    height: auto;
+    user-select: none;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+    .main-container { flex-direction: column; align-items: center; padding: 8% 4% 2% 4%; }
+    .left-box { width: 90vw; max-width: 100%; margin-bottom: 22px; }
+    .right-img img { width: 40vw; min-width: 120px; }
+}
