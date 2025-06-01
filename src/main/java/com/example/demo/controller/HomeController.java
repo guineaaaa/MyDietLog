@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.sql.DataSource;
 import java.sql.Connection;
 @Controller
-public class HelloController {
+public class HomeController {
 	
 	@Autowired
     private DataSource dataSource;
