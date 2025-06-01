@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
-public class UserService {
+import com.example.demo.model.User;
+import com.example.demo.model.Goal;
 
+public interface UserService {
+	void registerUserWithGoal(User user, Goal goal);
 }

@@ -15,6 +15,7 @@ public class HomeController {
 	@Autowired
     private DataSource dataSource;
 	
+	// 랜딩페이지
 	@GetMapping("/")
 	public String hello(Model model) {
 		return "index";
