@@ -11,7 +11,7 @@ body {
     margin: 44px auto;
     background: rgba(255,255,240,0.77);
     border-radius: 16px;
-    box-shadow: 0 2px 16px rgba(230,200,80,0.08);
+    box-shadow: 16px 16px 16px 16px rgba(230,200,80,0.08);
     padding: 48px 44px 32px 44px;
     display: flex;
     flex-direction: column;
@@ -102,6 +102,71 @@ body {
 .signup-btn:hover {
     background: #ffd65a;
 }
+.gender-row {
+    display: flex;
+    gap: 36px;  /* 버튼 사이 넓은 간격 */
+    align-items: center;
+    margin-bottom: 16px;
+    margin-top: 4px;
+}
+
+.gender-label {
+    display: flex;
+    align-items: center;
+    font-size: 1.18rem;
+    font-weight: 500;
+    color: #6a472b;
+    cursor: pointer;
+    gap: 10px;
+    position: relative;
+}
+
+.gender-label input[type="radio"] {
+    display: none;
+}
+
+.custom-radio {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #f8cd5a;
+    border-radius: 50%;
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border 0.2s, background 0.2s;
+    position: relative;
+    box-sizing: border-box;
+    margin-right: 8px;
+}
+
+.gender-label input[type="radio"]:checked + .custom-radio {
+    background: #f8cd5a;
+    border: 3px solid #e9b941;
+    box-shadow: 0 0 0 4px #fff8c8;
+}
+
+.gender-label input[type="radio"]:checked + .custom-radio::after {
+    content: "";
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    display: block;
+    margin: 0 auto;
+}
+
+.gender-text {
+    margin-left: 0;
+    margin-right: 14px;
+}
+
+@media (max-width: 650px) {
+    .gender-row { gap: 17px; }
+    .gender-label { font-size: 1rem; }
+}
+
+
 
 .blind {
     /* 접근성: 라벨 숨기기 */
@@ -114,3 +179,4 @@ body {
     .signup-form { gap: 7px; }
     .signup-btn { padding: 13px 0; font-size: 1rem; }
 }
+

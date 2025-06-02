@@ -7,6 +7,7 @@ public class User {
 	private String username;// 로그인용
 	private String loginId;
 	private String password;
+	private String gender;
 	private Integer height;
 	private Integer weight;
 	private LocalDateTime regDate;
@@ -42,6 +43,14 @@ public class User {
 
 	public String getPassword() {
 		return password;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+	
+	public void setGender(String gender) {
+		this.gender=gender;
 	}
 
 	public void setPassword(String password) {

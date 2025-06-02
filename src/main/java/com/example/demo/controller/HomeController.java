@@ -21,7 +21,10 @@ public class HomeController {
 		return "index";
 	}
 	
+
 	
+	
+	/**
     @GetMapping("/test-db")
     @ResponseBody
     public String testDb() {
@@ -36,4 +39,5 @@ public class HomeController {
             return "DB 연결 중 에러: " + e.getMessage();
         }
     }
+    **/
 }

@@ -18,6 +18,20 @@
             <label>비밀번호</label>
             <input type="password" name="password" required>
             
+            <label>성별</label>
+            <div class="gender-row">
+                <label class="gender-label">
+                    <input type="radio" name="gender" value="FEMALE" required checked>
+                    <span class="custom-radio"></span>
+                    <span class="gender-text">여성</span>
+                </label>
+                <label class="gender-label">
+                    <input type="radio" name="gender" value="MALE" required>
+                    <span class="custom-radio"></span>
+                    <span class="gender-text">남성</span>
+                </label>
+            </div>
+            
             <label>키</label>
             <input type="number" name="height" required>
             
@@ -31,7 +45,7 @@
                 <input type="date" name="endDate" required placeholder="종료일" class="goal-input">
             </div>
             <div class="goal-row">
-                <input type="number" name="goalWeight" placeholder="몇 kg? (예: 2kg)" required class="goal-input">
+                <input type="number" name="goalWeight" placeholder="몇 kg? (예: 2)" required class="goal-input">
                 <select name="goalType" required class="goal-input">
                     <option value="GAIN">증량</option>
                     <option value="LOSE">감량</option>

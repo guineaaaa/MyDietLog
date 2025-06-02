@@ -18,22 +18,22 @@ public class UserDaoImpl implements UserDao {
 	
 	
     // DataSource 주입, JDBC Template 사용 등 생략
-    @Override
-    public int insertUser(User user) {
-        String sql = "INSERT INTO User (username, loginId, password, height, weight) VALUES (?, ?, ?, ?, ?)";
-        // KeyHolder 사용해서 user.id 자동생성 반환
-        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(con -> {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getLoginId());
-            ps.setString(3, user.getPassword());
-            ps.setInt(4, user.getHeight());
-            ps.setInt(5, user.getWeight());
-            return ps;
-        }, keyHolder);
-        return keyHolder.getKey().intValue();
-    }
+	@Override
+	public int insertUser(User user) {
+	    String sql = "INSERT INTO User (username, loginId, password, gender, height, weight) VALUES (?, ?, ?, ?, ?, ?)";
+	    GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+	    jdbcTemplate.update(con -> {
+	        PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+	        ps.setString(1, user.getUsername());
+	        ps.setString(2, user.getLoginId());
+	        ps.setString(3, user.getPassword());
+	        ps.setString(4, user.getGender()); // 추가
+	        ps.setInt(5, user.getHeight());
+	        ps.setInt(6, user.getWeight());
+	        return ps;
+	    }, keyHolder);
+	    return keyHolder.getKey().intValue();
+	}
 
     @Override
     public User findByLoginId(String loginId) {
@@ -44,6 +44,7 @@ public class UserDaoImpl implements UserDao {
             user.setUsername(rs.getString("username"));
             user.setLoginId(rs.getString("loginId"));
             user.setPassword(rs.getString("password"));
+            user.setGender(rs.getString("gender"));
             user.setHeight(rs.getInt("height"));
             user.setWeight(rs.getInt("weight"));
             user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
