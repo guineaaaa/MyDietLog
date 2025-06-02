@@ -44,7 +44,7 @@ public class UserController {
 		User user = userService.login(loginId, password);
 		if (user != null) {
 			session.setAttribute("loginUser", user); // 로그인 세션 저장
-			return "redirect:/"; // 메인 페이지 등으로 이동
+			return "redirect:/"; // 메인 페이지로 이동
 		} else {
 			model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
 			return "login"; // 로그인 화면으로 다시 이동
