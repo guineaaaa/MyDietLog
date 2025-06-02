@@ -1,0 +1,203 @@
+body {
+    background: #fff9d7;
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.main-wrap {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 42px 8px 42px;
+    background: none;
+}
+
+.logo {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #6a472b;
+    margin-right: 32px;
+}
+
+.nav-menu a {
+    margin: 0 18px;
+    color: #6a472b;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: color 0.12s;
+}
+
+.nav-menu a:hover {
+    color: #fdc242;
+}
+
+.mypage-btn {
+    background: #ffe083;
+    border: none;
+    border-radius: 22px;
+    padding: 13px 28px;
+    font-size: 1.13rem;
+    color: #6a472b;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 36px;
+    padding: 18px 42px 42px 42px;
+}
+
+.calendar-section {
+    flex: 1.15;
+    background: none;
+}
+
+.calendar-box {
+    background: #fffde9;
+    border: 2px solid #6a472b;
+    border-radius: 10px;
+    margin-top: 18px;
+    padding: 36px 0;
+    min-height: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #444;
+    font-weight: 600;
+}
+
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: none;
+}
+
+.calendar th, .calendar td {
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    border-radius: 50%;
+    transition: background 0.14s;
+}
+
+.calendar td.today {
+    background: #ffe083;
+    color: #6a472b;
+    font-weight: 700;
+}
+
+.calendar td.selected {
+    background: #fdc242;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.log-section {
+    flex: 1.5;
+    background: rgba(255,255,255,0.5);
+    border-radius: 18px;
+    padding: 28px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.goal-progress {
+    margin-bottom: 16px;
+}
+
+.progress-label {
+    font-weight: 700;
+    color: #a8832d;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.progress-bar-wrap {
+    flex: 1;
+    height: 15px;
+    background: #fbeed3;
+    border-radius: 11px;
+    margin-left: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #fdc242;
+    border-radius: 11px;
+    transition: width 0.35s;
+}
+
+.log-box {
+    background: #fffbe0;
+    border-radius: 16px;
+    padding: 18px 16px;
+    margin-bottom: 14px;
+}
+
+.log-label {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #a8832d;
+    margin-bottom: 6px;
+}
+
+.meal-table, .exercise-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.meal-table th, .meal-table td, .exercise-table th, .exercise-table td {
+    padding: 5px 8px;
+    font-size: 1.01rem;
+    color: #6a472b;
+    border: none;
+}
+
+.meal-table input, .exercise-table input, .exercise-table select {
+    width: 90%;
+    padding: 7px 10px;
+    border-radius: 14px;
+    border: none;
+    background: #fffdee;
+    font-size: 1rem;
+    color: #6a472b;
+    margin: 0;
+}
+
+.meal-table button, .exercise-table button {
+    background: #fdc242;
+    border: none;
+    border-radius: 12px;
+    padding: 7px 14px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.97rem;
+}
+
+@media (max-width: 1100px) {
+    .main-content {
+        flex-direction: column;
+        gap: 22px;
+        padding: 12px 5vw;
+    }
+    .calendar-section, .log-section {
+        padding: 0;
+    }
+}

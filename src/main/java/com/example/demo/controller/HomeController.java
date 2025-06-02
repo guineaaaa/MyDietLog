@@ -21,6 +21,7 @@ public class HomeController {
 		return "index";
 	}
 	
+	
     @GetMapping("/test-db")
     @ResponseBody
     public String testDb() {
