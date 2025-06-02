@@ -35,9 +35,39 @@ public class UserDaoImpl implements UserDao {
         return keyHolder.getKey().intValue();
     }
 
+    @Override
+    public User findByLoginId(String loginId) {
+        String sql = "SELECT * FROM User WHERE loginId = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{loginId}, (rs, rowNum) -> {
+            User user = new User();
+            user.setId(rs.getInt("id"));
+            user.setUsername(rs.getString("username"));
+            user.setLoginId(rs.getString("loginId"));
+            user.setPassword(rs.getString("password"));
+            user.setHeight(rs.getInt("height"));
+            user.setWeight(rs.getInt("weight"));
+            user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
+            return user;
+        });
+    }
 	@Override
-	public User findByUserId(String LoginId) {
-		return null;
+	public User findByLoginIdAndPassword(String loginId, String password) {
+	    String sql = "SELECT * FROM User WHERE loginId = ? AND password = ?";
+	    try {
+	        return jdbcTemplate.queryForObject(sql, new Object[]{loginId, password}, (rs, rowNum) -> {
+	            User user = new User();
+	            user.setId(rs.getInt("id"));
+	            user.setUsername(rs.getString("username"));
+	            user.setLoginId(rs.getString("loginId"));
+	            user.setPassword(rs.getString("password"));
+	            user.setHeight(rs.getInt("height"));
+	            user.setWeight(rs.getInt("weight"));
+	            user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
+	            return user;
+	        });
+	    } catch (Exception e) {
+	        return null; // 로그인 실패 시 null 반환
+	    }
 	}
 
 }
