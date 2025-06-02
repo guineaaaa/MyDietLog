@@ -20,10 +20,12 @@ public class UserController {
 		return "signup";
 	}
 	
-	// 회원가입 처리
+	// 회원가입+목표 등록 처리 
     @PostMapping("/signup")
-    public String signupSubmit(@ModelAttribute User user, @ModelAttribute Goal goal, Model model) {
+    public String signupSubmit(@ModelAttribute User user, @ModelAttribute Goal goal) {
         userService.registerUserWithGoal(user, goal);
-        return "signup_success"; // 성공 안내
+        return "redirect:/";  // 회원가입 후 랜딩페이지로 이동
     }
+	
+    
 }

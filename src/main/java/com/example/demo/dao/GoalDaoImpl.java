@@ -21,7 +21,7 @@ public class GoalDaoImpl implements GoalDao{
         jdbcTemplate.update(sql,
             goal.getUserId(),
             goal.getGoalWeight(),
-            goal.getGoalType(),
+            goal.getGoalType().name(), // 자바에서 Enum 타입을 다룰 때 해당 Enum 상수의 "이름" 문자열을 반환하는 메소드
             goal.getMemo(),
             goal.getStartDate(),
             goal.getEndDate()

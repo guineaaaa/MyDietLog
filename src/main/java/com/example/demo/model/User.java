@@ -3,9 +3,9 @@ package com.example.demo.model;
 import java.time.LocalDateTime;
 
 public class User {
-	private int id;
-	private String username;
-	private String userId;
+	private int id; // PK
+	private String username;// 로그인용
+	private String loginId;
 	private String password;
 	private Integer height;
 	private Integer weight;
@@ -32,12 +32,12 @@ public class User {
 		this.username = username;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getLoginId() {
+		return loginId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
 	public String getPassword() {

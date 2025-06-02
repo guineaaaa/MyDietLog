@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import com.example.demo.model.enums.GoalType;
 
 public class Goal {
-	private int id;
-	private int userId;
+	private int id; //PK
+	
+	// int는 null을 가질 수 없지만, Integer는 null 가능
+	private Integer userId; // FK(User의 id, int)
 	private double goalWeight;
 	private GoalType goalType; // "GAIN" or "LOSE"
 	private String memo;

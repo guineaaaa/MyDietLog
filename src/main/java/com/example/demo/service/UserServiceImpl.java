@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService{
 	@Override
     public void registerUserWithGoal(User user, Goal goal) {
         int userId = userdao.insertUser(user); // User 등록, PK 반환
-        goal.setUserId(userId);
+        goal.setUserId(userId); // Goal 객체에 PK 세팅
         goalDao.insertGoal(goal); // Goal 등록 (User의 PK로 연결)
     }
 }
