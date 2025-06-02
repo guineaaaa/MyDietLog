@@ -24,20 +24,20 @@
             <label>몸무게</label>
             <input type="number" name="weight" required>
             
+            <!-- 목표 -->
+            <label>목표</label>
             <div class="goal-row">
-                <div class="goal-left">
-                    <label>목표</label>
-                    <input type="number" name="goalWeight" placeholder="어느정도 증량/감량 하고싶어요?" required>
-                </div>
-                
-				<div class="goal-right">
-                    <label class="blind">증량 및 감량</label>
-                    <select name="goalType" required>
-                        <option value="GAIN">증량</option>
-                        <option value="LOSE">감량</option>
-                    </select>
-                </div>
+                <input type="date" name="startDate" required placeholder="시작일" class="goal-input">
+                <input type="date" name="endDate" required placeholder="종료일" class="goal-input">
             </div>
+            <div class="goal-row">
+                <input type="number" name="goalWeight" placeholder="몇 kg? (예: 2kg)" required class="goal-input">
+                <select name="goalType" required class="goal-input">
+                    <option value="GAIN">증량</option>
+                    <option value="LOSE">감량</option>
+                </select>
+            </div>
+            
             <label>다짐</label>
             <input type="text" name="memo" placeholder="다짐을 적어봐요!" maxlength="100">
             
