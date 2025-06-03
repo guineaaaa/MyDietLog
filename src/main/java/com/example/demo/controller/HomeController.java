@@ -21,6 +21,10 @@ public class HomeController {
 		return "index";
 	}
 	
+	@GetMapping("/main")
+	public String main(Model model) {
+		return "main";
+	}
 
 	
 	

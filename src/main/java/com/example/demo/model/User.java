@@ -11,6 +11,7 @@ public class User {
 	private Integer height;
 	private Integer weight;
 	private LocalDateTime regDate;
+	private Integer recommendedCalorie;
 
 	// 기본 생성자
 	public User() {
@@ -80,5 +81,12 @@ public class User {
 	public void setRegDate(LocalDateTime regDate) {
 		this.regDate = regDate;
 	}
+	
+    public Integer getRecommendedCalorie() {
+        return recommendedCalorie;
+    }
+    public void setRecommendedCalorie(Integer recommendedCalorie) {
+        this.recommendedCalorie = recommendedCalorie;
+    }
 
 }

@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
     // DataSource 주입, JDBC Template 사용 등 생략
 	@Override
 	public int insertUser(User user) {
-	    String sql = "INSERT INTO User (username, loginId, password, gender, height, weight) VALUES (?, ?, ?, ?, ?, ?)";
+	    String sql = "INSERT INTO User (username, loginId, password, gender, height, weight, recommended_calorie) VALUES (?, ?, ?, ?, ?, ?,?)";
 	    GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 	    jdbcTemplate.update(con -> {
 	        PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -30,6 +30,7 @@ public class UserDaoImpl implements UserDao {
 	        ps.setString(4, user.getGender()); // 추가
 	        ps.setInt(5, user.getHeight());
 	        ps.setInt(6, user.getWeight());
+	        ps.setInt(7, user.getRecommendedCalorie());
 	        return ps;
 	    }, keyHolder);
 	    return keyHolder.getKey().intValue();
