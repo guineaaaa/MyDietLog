@@ -3,10 +3,10 @@
 <div class="navbar">
     <span class="logo">MyDietLog</span>
     <div class="nav-links">
-        <a href="#">daily</a>
-        <a href="#">weekly</a>
-        <a href="#">monthly</a>
-        <a href="#">goal</a>
+        <a href="/daily">daily</a>
+        <a href="/weekly">weekly</a>
+        <a href="/monthly">monthly</a>
+        <a href="/goal">goal</a>
     </div>
     <button class="nav-btn">로그인</button>
 </div>

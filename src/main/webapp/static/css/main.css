@@ -1,85 +1,41 @@
 body {
+    background: #fcf8e3;
     margin: 0;
-    font-family: 'Noto Sans KR', sans-serif;
-    background: linear-gradient(135deg, #FFFDE4 0%, #FFE87C 100%);
-    min-height: 100vh;
-    color: #6a472b;
+    font-family: 'NanumSquare', 'Apple SD Gothic Neo', sans-serif;
 }
+.main-container { max-width: 1100px; margin: 36px auto; background: #fffbea; border-radius: 14px; box-shadow: 0 4px 18px #ddd; padding: 16px 28px; }
 
-/* 메인 랜딩 컨테이너 */
-.main-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 14px 58px 20px 78px;
-    min-height: 82vh;
-    box-sizing: border-box;
-    gap: 25vw;
-}
+.navbar { display: flex; align-items: center; gap: 32px; font-size: 1.7rem; font-weight: 700; color: #B2935B; }
+.navbar .logo { font-size: 2rem; font-weight: 800; margin-right: 36px; }
+.navbar .nav-links a { margin: 0 10px; color: #b2935b; text-decoration: none; }
+.navbar .nav-links a:hover { color: #c99e47; }
+.navbar .nav-btn { margin-left: auto; background: #f8dd91; border: none; padding: 8px 24px; border-radius: 16px; font-weight: 700; font-size: 1.1rem; cursor: pointer; }
 
-/* 왼쪽 박스 */
-.left-box {
-    max-width: 480px;
-    min-width: 340px;
-    width: 32vw;
-    margin-right: 20px;
-}
+.content-grid { display: grid; grid-template-columns: 1.2fr 2fr 1.6fr; gap: 22px; margin-top: 22px; }
 
-.left-box hr {
-    margin-bottom: 28px;
-    border: 2.3px solid #6a472b;
-    width: 85%;
-    margin-left: 0;
-}
+.user-info { font-size: 1.05rem; background: #fff8d2; padding: 16px 18px; border-radius: 12px; box-shadow: 0 2px 12px #f7ecd4; min-width: 160px;}
+.user-info .username { font-size: 1.4rem; font-weight: bold; margin-bottom: 7px; }
+.user-info .goal { margin: 8px 0 4px 0; color: #be9142; }
+.user-info .memo { color: #818181; }
 
-.left-box h1 {
-    font-size: 2.3rem;
-    color: #6a472b;
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    margin: 0 0 26px 0;
-    line-height: 1.3;
-}
+.calendar-box { background: #fff; border: 2px solid #b6b381; border-radius: 11px; padding: 18px; min-width: 250px; min-height: 360px; display: flex; flex-direction: column; align-items: center; }
+.calendar-title { font-weight: bold; margin-bottom: 6px; font-size: 1.1rem;}
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 34px); gap: 3px; }
+.calendar-cell { width: 34px; height: 34px; border-radius: 9px; background: #faf5da; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.calendar-cell:hover { background: #f5df93; }
+.calendar-cell.today { background: #ecbfbf; }
 
-.left-box .desc {
-    font-size: 2.0rem;
-    color: #6a472b;
-    font-weight: 700;
-    margin-bottom: 44px;
-    line-height: 1.28;
-}
+.side-panel { background: #fff6e1; padding: 20px; border-radius: 14px; min-width: 250px; box-shadow: 0 2px 10px #fae2af; display: flex; flex-direction: column; gap: 19px; }
+.progress-bar-box { margin-bottom: 8px; }
+.progress-percent { font-size: 1.1rem; color: #be9142; margin-right: 7px;}
+.progress-bar-bg { width: 100%; height: 11px; background: #fae5b5; border-radius: 7px; overflow: hidden; }
+.progress-bar-fill { background: #ecbfbf; height: 100%; border-radius: 7px; }
 
-.left-box .main-btn {
-    background: #ffe083;
-    border: none;
-    border-radius: 28px;
-    padding: 18px 62px;
-    font-size: 1.25rem;
-    color: #6a472b;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(200, 180, 60, 0.13);
-}
-
-/* 오른쪽 오리 이미지 */
-.right-img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-}
-
-.right-img img {
-    width: 370px;
-    max-width: 40vw;
-    min-width: 230px;
-    height: auto;
-    user-select: none;
-}
-
-/* 반응형 */
-@media (max-width: 900px) {
-    .main-container { flex-direction: column; align-items: center; padding: 8% 4% 2% 4%; }
-    .left-box { width: 90vw; max-width: 100%; margin-bottom: 22px; }
-    .right-img img { width: 40vw; min-width: 120px; }
-}
+.diet-record-box, .exercise-record-box { background: #fffaec; border-radius: 10px; padding: 12px 14px; margin-bottom: 15px;}
+.diet-title, .exercise-title { font-weight: bold; margin-bottom: 5px;}
+.meal-record { display: flex; gap: 6px; margin-bottom: 3px; align-items: center;}
+.meal-record input { width: 92px; padding: 4px 7px; border: 1px solid #ddd; border-radius: 5px; }
+.exercise-row { display: flex; gap: 8px; align-items: center; margin-bottom: 3px; }
+.exercise-row input, .exercise-row select { padding: 4px 7px; border: 1px solid #ddd; border-radius: 5px; }
+button[type="submit"] { margin-top: 8px; background: #e7cd81; color: #533b18; font-weight: bold; border: none; padding: 7px 19px; border-radius: 7px; cursor: pointer; }
+button[type="submit"]:hover { background: #ffd700; }
