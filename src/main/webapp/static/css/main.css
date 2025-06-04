@@ -1,55 +1,250 @@
+body {
+    background: linear-gradient(135deg, #FFFDE4 0%, #FFE87C 100%);
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    color: #6a472b;
+}
+
+/* 전체 대시보드 박스 */
 .dashboard-container {
     width: 98%;
-    max-width: 1200px;
-    min-width: 660px;
-    margin: 28px auto 0 auto;
+    max-width: 1250px;
+    min-width: 680px;
+    margin: 26px auto 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 2%;
-    padding: 18px 2% 30px 2%;
+    gap: 2.5vw;
+    padding: 18px 2% 34px 2%;
     background: rgba(255,255,255,0.08);
-    border-radius: 12px;
-    min-height: 76vh;
+    border-radius: 18px;
+    min-height: 77vh;
+    box-sizing: border-box;
 }
 
 .dash-left {
-    width: 53%;
-    min-width: 330px;
-    max-width: 600px;
+    width: 56%;
+    min-width: 340px;
+    max-width: 630px;
 }
-.dash-right {
-    width: 41%;
-    min-width: 270px;
-    max-width: 440px;
-    background: rgba(255,255,255,0.07);
+
+.user-summary {
+    margin-bottom: 14px;
+    font-size: 1.19rem;
+    color: #6a472b;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.user-summary b {
+    font-size: 1.26rem;
+    color: #fdcc5c;
+    letter-spacing: -1.5px;
+    font-weight: 900;
+}
+
+.user-summary div {
+    margin-bottom: 3.5px;
+}
+
+.calendar-area {
+    border: 4px solid #6a472b;
+    background: #fffdeb;
+    min-height: 250px;
+    border-radius: 11px;
+    margin-bottom: 18px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calendar-area span {
+    font-size: 2.0rem;
+    color: #4d3922;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.29;
+    letter-spacing: -1.2px;
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+    padding: 10px;
+    min-height: 230px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fffdeb;
+    border: 3px solid #6a472b;
     border-radius: 12px;
-    padding: 18px 3%;
 }
-.user-summary { margin-bottom: 18px; font-size: 1.08rem; color: #6a472b; }
-.calendar-area { border: 2px solid #378382; min-height: 240px; background: #fafafa; border-radius: 9px; margin-bottom: 26px; }
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+.calendar-header button {
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4d3922;
+  font-weight: bold;
+}
+
+.calendar-day {
+    background: #fff9d0;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    color: #4d3922;
+    transition: background 0.2s;
+}
+
+.calendar-day:hover {
+    background: #ffe083;
+}
+
+.calendar-day.today {
+    border: 2px solid #e5890a;
+}
+
+.calendar-day.selected {
+    background: #ffe083;
+    font-weight: bold;
+    box-shadow: 0 0 4px #d99e2b;
+}
+
+
+
+/* 우측 대시보드 */
+.dash-right {
+    width: 39%;
+    min-width: 260px;
+    max-width: 440px;
+    background: rgba(255,255,255,0.14);
+    border-radius: 16px;
+    padding: 22px 3.5%;
+    box-sizing: border-box;
+}
 
 /* 진행률 바 */
-.progress-bar-area { margin-bottom: 18px; }
-.progress-label { font-size: 1.2rem; font-weight: bold; color: #ad7e16; margin-bottom: 5px;}
+.progress-bar-area {
+    margin-bottom: 17px;
+}
+.progress-label {
+    font-size: 1.33rem;
+    font-weight: bold;
+    color: #b77719;
+    margin-bottom: 4px;
+    margin-left: 7px;
+    margin-top: 3px;
+}
 .progress-bar-bg {
     background: #fff;
     height: 18px;
     border-radius: 12px;
-    width: 96%;
-    margin-bottom: 6px;
-    box-shadow: 0 1.5px 6px rgba(180,160,90,0.10);
+    width: 98%;
+    margin-bottom: 4px;
+    box-shadow: 0 1.5px 6px rgba(180,160,90,0.11);
     position: relative;
+    overflow: hidden;
 }
 .progress-bar-fill {
     background: #ffe083;
     height: 100%;
     border-radius: 12px;
-    width: 25%; /* JS/JSTL로 동적으로 width 설정 */
     transition: width 0.4s;
 }
+.calendar-header {
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  background: #fffdeb;
+  padding: 6px;
+  border-radius: 10px;
+}
+.calendar-day-label {
+  text-align: center;
+  font-weight: bold;
+  color: #4d3922;
+  background: #fff9c4;
+  padding: 5px;
+  border-radius: 4px;
+}
+/* 식단/운동 기록 라벨 */
+.record-label {
+    background: #ffe083;
+    display: inline-block;
+    padding: 6px 21px;
+    border-radius: 18px;
+    font-weight: 700;
+    color: #ad7e16;
+    margin-bottom: 10px;
+    font-size: 1.14rem;
+    margin-top: 17px;
+    letter-spacing: -1px;
+}
 
-.record-label { background: #ffe083; display: inline-block; padding: 4px 17px; border-radius: 14px; font-weight: 700; color: #ad7e16; margin-bottom: 7px; font-size: 1.09rem; margin-top: 15px;}
+.diet-records, .exercise-records {
+    margin-bottom: 14px;
+    font-size: 1.07rem;
+}
+.diet-records div, .exercise-records div {
+    margin-bottom: 2px;
+    color: #7e5a2a;
+    font-size: 1.08rem;
+    font-weight: 500;
+}
+.record-form {
+    background: #fffdeb;
+    border: 1.5px solid #d8b760;
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 22px;
+  }
+  .record-form input,
+  .record-form select {
+    width: 90%;
+    padding: 6px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  .record-form button {
+    background-color: #ffe083;
+    border: none;
+    padding: 8px 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .record-form label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+/* 식단/운동 세부 항목 조금 간격 */
+.diet-records > div:not(:first-child),
+.exercise-records > div:not(:first-child) {
+    padding-left: 9px;
+}
 
-.diet-records, .exercise-records { margin-bottom: 12px; }
-.diet-records div, .exercise-records div { margin-bottom: 3px; color: #7e5a2a; font-size: 1.01rem;}
+@media (max-width: 1000px) {
+    .dashboard-container { flex-direction: column; padding: 2.5vw 2vw 8vw 2vw;}
+    .dash-left, .dash-right { width: 95%; min-width: 0; max-width: 100%; }
+    .dash-left { margin-bottom: 38px;}
+}
