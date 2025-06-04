@@ -1,11 +1,10 @@
-<!-- src/main/webapp/WEB-INF/jsp/index.jsp -->
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>MyDietLog</title>
-    <link rel="stylesheet" href="/static/css/mainpage.css?v=1.0">
-    <link rel="stylesheet" href="/static/css/navbar.css?v=1.0"><!-- 네비바 스타일 별도 import -->
+    <link rel="stylesheet" href="/static/css/mainpage.css?v=2.0">
+    <link rel="stylesheet" href="/static/css/navbar.css?v=2.0">
 </head>
 <body>
     <%@ include file="navbar.jsp" %>
@@ -15,7 +14,6 @@
             <h1>
                 나만의 식단 기록 &<br>건강 관리 웹서비스
             </h1>
-            <div class="desc"></div>
             <button class="main-btn">회원가입</button>
         </div>
         <div class="right-img">
