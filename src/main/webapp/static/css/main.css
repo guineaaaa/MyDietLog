@@ -1,41 +1,55 @@
-body {
-    background: #fcf8e3;
-    margin: 0;
-    font-family: 'NanumSquare', 'Apple SD Gothic Neo', sans-serif;
+.dashboard-container {
+    width: 98%;
+    max-width: 1200px;
+    min-width: 660px;
+    margin: 28px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2%;
+    padding: 18px 2% 30px 2%;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
+    min-height: 76vh;
 }
-.main-container { max-width: 1100px; margin: 36px auto; background: #fffbea; border-radius: 14px; box-shadow: 0 4px 18px #ddd; padding: 16px 28px; }
 
-.navbar { display: flex; align-items: center; gap: 32px; font-size: 1.7rem; font-weight: 700; color: #B2935B; }
-.navbar .logo { font-size: 2rem; font-weight: 800; margin-right: 36px; }
-.navbar .nav-links a { margin: 0 10px; color: #b2935b; text-decoration: none; }
-.navbar .nav-links a:hover { color: #c99e47; }
-.navbar .nav-btn { margin-left: auto; background: #f8dd91; border: none; padding: 8px 24px; border-radius: 16px; font-weight: 700; font-size: 1.1rem; cursor: pointer; }
+.dash-left {
+    width: 53%;
+    min-width: 330px;
+    max-width: 600px;
+}
+.dash-right {
+    width: 41%;
+    min-width: 270px;
+    max-width: 440px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 18px 3%;
+}
+.user-summary { margin-bottom: 18px; font-size: 1.08rem; color: #6a472b; }
+.calendar-area { border: 2px solid #378382; min-height: 240px; background: #fafafa; border-radius: 9px; margin-bottom: 26px; }
 
-.content-grid { display: grid; grid-template-columns: 1.2fr 2fr 1.6fr; gap: 22px; margin-top: 22px; }
+/* 진행률 바 */
+.progress-bar-area { margin-bottom: 18px; }
+.progress-label { font-size: 1.2rem; font-weight: bold; color: #ad7e16; margin-bottom: 5px;}
+.progress-bar-bg {
+    background: #fff;
+    height: 18px;
+    border-radius: 12px;
+    width: 96%;
+    margin-bottom: 6px;
+    box-shadow: 0 1.5px 6px rgba(180,160,90,0.10);
+    position: relative;
+}
+.progress-bar-fill {
+    background: #ffe083;
+    height: 100%;
+    border-radius: 12px;
+    width: 25%; /* JS/JSTL로 동적으로 width 설정 */
+    transition: width 0.4s;
+}
 
-.user-info { font-size: 1.05rem; background: #fff8d2; padding: 16px 18px; border-radius: 12px; box-shadow: 0 2px 12px #f7ecd4; min-width: 160px;}
-.user-info .username { font-size: 1.4rem; font-weight: bold; margin-bottom: 7px; }
-.user-info .goal { margin: 8px 0 4px 0; color: #be9142; }
-.user-info .memo { color: #818181; }
+.record-label { background: #ffe083; display: inline-block; padding: 4px 17px; border-radius: 14px; font-weight: 700; color: #ad7e16; margin-bottom: 7px; font-size: 1.09rem; margin-top: 15px;}
 
-.calendar-box { background: #fff; border: 2px solid #b6b381; border-radius: 11px; padding: 18px; min-width: 250px; min-height: 360px; display: flex; flex-direction: column; align-items: center; }
-.calendar-title { font-weight: bold; margin-bottom: 6px; font-size: 1.1rem;}
-.calendar-grid { display: grid; grid-template-columns: repeat(7, 34px); gap: 3px; }
-.calendar-cell { width: 34px; height: 34px; border-radius: 9px; background: #faf5da; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-.calendar-cell:hover { background: #f5df93; }
-.calendar-cell.today { background: #ecbfbf; }
-
-.side-panel { background: #fff6e1; padding: 20px; border-radius: 14px; min-width: 250px; box-shadow: 0 2px 10px #fae2af; display: flex; flex-direction: column; gap: 19px; }
-.progress-bar-box { margin-bottom: 8px; }
-.progress-percent { font-size: 1.1rem; color: #be9142; margin-right: 7px;}
-.progress-bar-bg { width: 100%; height: 11px; background: #fae5b5; border-radius: 7px; overflow: hidden; }
-.progress-bar-fill { background: #ecbfbf; height: 100%; border-radius: 7px; }
-
-.diet-record-box, .exercise-record-box { background: #fffaec; border-radius: 10px; padding: 12px 14px; margin-bottom: 15px;}
-.diet-title, .exercise-title { font-weight: bold; margin-bottom: 5px;}
-.meal-record { display: flex; gap: 6px; margin-bottom: 3px; align-items: center;}
-.meal-record input { width: 92px; padding: 4px 7px; border: 1px solid #ddd; border-radius: 5px; }
-.exercise-row { display: flex; gap: 8px; align-items: center; margin-bottom: 3px; }
-.exercise-row input, .exercise-row select { padding: 4px 7px; border: 1px solid #ddd; border-radius: 5px; }
-button[type="submit"] { margin-top: 8px; background: #e7cd81; color: #533b18; font-weight: bold; border: none; padding: 7px 19px; border-radius: 7px; cursor: pointer; }
-button[type="submit"]:hover { background: #ffd700; }
+.diet-records, .exercise-records { margin-bottom: 12px; }
+.diet-records div, .exercise-records div { margin-bottom: 3px; color: #7e5a2a; font-size: 1.01rem;}
