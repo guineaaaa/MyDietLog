@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>MyDietLog</title>
-    <link rel="stylesheet" href="/static/css/main.css?v=1.0">
+    <link rel="stylesheet" href="/static/css/mainpage.css?v=1.0">
     <link rel="stylesheet" href="/static/css/navbar.css?v=1.0"><!-- 네비바 스타일 별도 import -->
 </head>
 <body>

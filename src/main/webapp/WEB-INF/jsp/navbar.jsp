@@ -7,6 +7,8 @@
         <a href="/weekly">weekly</a>
         <a href="/monthly">monthly</a>
         <a href="/goal">goal</a>
+		<a href="/exercise">exercise</a>
+		<a href="/mypage">mypage</a>
     </div>
     <button class="nav-btn">로그인</button>
 </div>

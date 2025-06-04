@@ -1,13 +1,14 @@
 package com.example.demo.model;
 
 import java.time.LocalDateTime;
+import com.example.demo.model.enums.Gender; 
 
 public class User {
 	private int id; // PK
 	private String username;// 로그인용
 	private String loginId;
 	private String password;
-	private String gender;
+	private Gender gender;
 	private Integer height;
 	private Integer weight;
 	private LocalDateTime regDate;
@@ -46,14 +47,14 @@ public class User {
 		return password;
 	}
 	
-	public String getGender() {
-		return gender;
-	}
-	
-	public void setGender(String gender) {
-		this.gender=gender;
-	}
-
+    public Gender getGender() { return gender; }
+    public void setGender(String gender) {
+        if (gender != null) {
+            this.gender = Gender.valueOf(gender.toUpperCase());
+        } else {
+            this.gender = null;
+        }
+    }
 	public void setPassword(String password) {
 		this.password = password;
 	}

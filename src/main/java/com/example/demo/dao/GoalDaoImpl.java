@@ -27,4 +27,24 @@ public class GoalDaoImpl implements GoalDao{
             goal.getEndDate()
         );
     }
+    
+    @Override
+    public Goal findLatestGoalByUserId(int userId) {
+        String sql = "SELECT * FROM Goal WHERE userId = ? ORDER BY end_date DESC LIMIT 1";
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{userId}, (rs, rowNum) -> {
+                Goal goal = new Goal();
+                goal.setId(rs.getInt("id"));
+                goal.setUserId(rs.getInt("userId"));
+                goal.setGoalWeight(rs.getDouble("goal_weight"));
+                goal.setGoalType(com.example.demo.model.enums.GoalType.valueOf(rs.getString("goal_type")));
+                goal.setMemo(rs.getString("memo"));
+                goal.setStartDate(rs.getDate("start_date").toLocalDate());
+                goal.setEndDate(rs.getDate("end_date").toLocalDate());
+                return goal;
+            });
+        } catch (Exception e) {
+            return null; // 목표가 없으면 null 반환
+        }
+    }
 }

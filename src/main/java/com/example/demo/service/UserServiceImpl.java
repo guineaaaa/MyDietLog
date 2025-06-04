@@ -9,6 +9,8 @@ import com.example.demo.dao.GoalDao;
 import com.example.demo.dao.UserDao;
 import com.example.demo.model.Goal;
 import com.example.demo.model.User;
+import com.example.demo.model.enums.Gender;
+import com.example.demo.model.enums.GoalType;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,62 +19,61 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerUserWithGoal(User user, Goal goal) {
-    	// 1. 목표일수 계산
-    	long days = ChronoUnit.DAYS.between(goal.getStartDate(), goal.getEndDate()) + 1;
-    	if (days < 1) days = 1;
+        if (user == null || goal == null) throw new IllegalArgumentException("user/goal must not be null");
+        if (user.getWeight() == null) throw new IllegalArgumentException("user weight required");
+        if (user.getGender() == null) throw new IllegalArgumentException("user gender required");
 
-    	// 2. 증/감량 변화량 계산
-    	double kgDelta = 0;
-    	String goalType = goal.getGoalType().name();
-    	if ("GAIN".equals(goalType) && goal.getGoalWeight() > user.getWeight()) {
-    	    kgDelta = goal.getGoalWeight() - user.getWeight();
-    	} else if ("LOSE".equals(goalType) && goal.getGoalWeight() < user.getWeight()) {
-    	    kgDelta = user.getWeight() - goal.getGoalWeight();
-    	}
+        long days = ChronoUnit.DAYS.between(goal.getStartDate(), goal.getEndDate()) + 1;
+        if (days < 1) days = 1;
 
-    	// 3. 건강한 감량 속도 체크 (감량일 때만)
-    	if ("LOSE".equals(goalType)) {
-    	    double weeks = days / 7.0;
-    	    double maxSafeLoss = weeks * 1.0; // 1주 1kg
-    	    if (kgDelta > maxSafeLoss) {
-    	        // ★ 경고 메시지: 너무 무리한 감량 목표입니다!
-    	        // return or 알림 제공
-    	    }
-    	}
+        double kgDelta = 0;
+        switch (goal.getGoalType()) {
+            case GAIN:
+                if (goal.getGoalWeight() > user.getWeight())
+                    kgDelta = goal.getGoalWeight() - user.getWeight();
+                break;
+            case LOSE:
+                if (goal.getGoalWeight() < user.getWeight())
+                    kgDelta = user.getWeight() - goal.getGoalWeight();
+                break;
+        }
 
-    	// 4. 기본 권장 칼로리
-    	int baseCalorie = ("MALE".equalsIgnoreCase(user.getGender()))
-    	    ? user.getWeight() * 30
-    	    : user.getWeight() * 25;
+        if (goal.getGoalType() == GoalType.LOSE) {
+            double weeks = days / 7.0;
+            double maxSafeLoss = weeks * 1.0; // 1주 1kg
+            if (kgDelta > maxSafeLoss) {
+                // 무리한 감량 경고(필요시 예외/로그)
+            }
+        }
 
-    	// 5. 증/감 적용
-    	int deltaCalorie = (int) Math.round((kgDelta * 7700) / days);
-    	if ("GAIN".equals(goalType)) {
-    	    baseCalorie += deltaCalorie;
-    	} else if ("LOSE".equals(goalType)) {
-    	    baseCalorie -= deltaCalorie;
-    	}
+        Gender gender = user.getGender();
+        int baseCalorie = (gender == Gender.MALE)
+            ? user.getWeight() * 30
+            : user.getWeight() * 25;
+        int minCalorie = (gender == Gender.MALE) ? 1500 : 1200;
 
-    	// 6. 하한선 적용 (여성 1200, 남성 1500)
-    	int minCalorie = ("MALE".equalsIgnoreCase(user.getGender())) ? 1500 : 1200;
-    	if (baseCalorie < minCalorie) baseCalorie = minCalorie;
+        int deltaCalorie = (int) Math.round((kgDelta * 7700) / days);
+        if (goal.getGoalType() == GoalType.GAIN) {
+            baseCalorie += deltaCalorie;
+        } else if (goal.getGoalType() == GoalType.LOSE) {
+            baseCalorie -= deltaCalorie;
+        }
+        if (baseCalorie < minCalorie) baseCalorie = minCalorie;
 
-    	user.setRecommendedCalorie(baseCalorie);
+        user.setRecommendedCalorie(baseCalorie);
 
-        // 5. 저장
-        int userId = userdao.insertUser(user); // User 등록(PK 반환)
-        goal.setUserId(userId); // Goal 객체에 PK 세팅
-        goalDao.insertGoal(goal); // Goal 등록 (User의 PK로 연결)
+        int userId = userdao.insertUser(user);
+        goal.setUserId(userId);
+        goalDao.insertGoal(goal);
     }
 
     @Override
     public User login(String loginId, String password) {
         return userdao.findByLoginIdAndPassword(loginId, password);
     }
-    
-    /**
+
+    @Override
     public User findById(int userId) {
         return userdao.findById(userId);
     }
-    **/
 }

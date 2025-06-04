@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
-public class ExerciseTypeGoal {
+import com.example.demo.model.ExerciseType;
+import java.util.List;
 
+public interface ExerciseTypeGoal {
+    List<ExerciseType> findAll();
 }

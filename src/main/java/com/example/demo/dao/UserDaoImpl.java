@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao {
 	        ps.setString(1, user.getUsername());
 	        ps.setString(2, user.getLoginId());
 	        ps.setString(3, user.getPassword());
-	        ps.setString(4, user.getGender()); // 추가
+	        ps.setString(4, user.getGender().name()); // 추가
 	        ps.setInt(5, user.getHeight());
 	        ps.setInt(6, user.getWeight());
 	        ps.setInt(7, user.getRecommendedCalorie());
@@ -62,6 +62,7 @@ public class UserDaoImpl implements UserDao {
 	            user.setUsername(rs.getString("username"));
 	            user.setLoginId(rs.getString("loginId"));
 	            user.setPassword(rs.getString("password"));
+	            user.setGender(rs.getString("gender"));
 	            user.setHeight(rs.getInt("height"));
 	            user.setWeight(rs.getInt("weight"));
 	            user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
@@ -70,6 +71,24 @@ public class UserDaoImpl implements UserDao {
 	    } catch (Exception e) {
 	        return null; // 로그인 실패 시 null 반환
 	    }
+	}
+	
+	@Override
+	public User findById(int userId) {
+	    String sql = "SELECT * FROM User WHERE id = ?";
+	    return jdbcTemplate.queryForObject(sql, new Object[]{userId}, (rs, rowNum) -> {
+	        User user = new User();
+	        user.setId(rs.getInt("id"));
+	        user.setUsername(rs.getString("username"));
+	        user.setLoginId(rs.getString("loginId"));
+	        user.setPassword(rs.getString("password"));
+	        user.setGender(rs.getString("gender")); // String → Enum
+	        user.setHeight(rs.getInt("height"));
+	        user.setWeight(rs.getInt("weight"));
+	        user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
+	        user.setRecommendedCalorie(rs.getInt("recommended_calorie"));
+	        return user;
+	    });
 	}
 
 }
