@@ -11,7 +11,7 @@
     <div class="daily-layout">
         <div class="streak-card">
             <img src="/static/img/chick.png" class="streak-img" />
-            <div class="streak-number">3</div>
+            <div class="streak-number">${streak}</div>
             <div class="streak-label">Days Streak</div>
         </div>
         <div class="report-card">
@@ -21,7 +21,8 @@
                 <b>${user.username}</b>님의 일일 권장 섭취 칼로리:<br>
                 <span class="kcal-num">${recommendedCalorie}kcal</span>
             </div>
-            <div class="report-today">
+            
+			<div class="report-today">
                 ${today.monthValue}월 ${today.dayOfMonth}일<br>
                 <b>${user.username}</b>님이 섭취한 칼로리:<br>
                 <span class="kcal-num">${totalIntake}kcal</span><br>
@@ -32,7 +33,8 @@
                 ${user.username}님의 순섭취(섭취-운동):<br>
                 <span class="kcal-num">${netCalorie}kcal</span>
             </div>
-            <div class="report-msg">
+            
+			<div class="report-msg">
                 <c:choose>
                     <c:when test="${diff > 100}">
                         <span>${diff} 칼로리나 더 드셨네요!</span><br>

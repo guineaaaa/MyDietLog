@@ -33,6 +33,7 @@ public class DailyController {
 		}
         User user = userService.findById(userId);
         LocalDate today = LocalDate.now();
+        int streak=dietLogService.calculateStreak(userId);
         
         // 1. 오늘의 식단 기록 가져오기 (아침, 점심, 저녁)
         List<DietLog> dietLogs = dietLogService.findByUserIdAndDate(userId, today.toString());
@@ -66,6 +67,7 @@ public class DailyController {
         model.addAttribute("netCalorie", netCalorie);
         model.addAttribute("diff", diff);
         model.addAttribute("calorieMsg", calorieMsg);
+        model.addAttribute("streak", streak);
 
         return "daily";
 	}

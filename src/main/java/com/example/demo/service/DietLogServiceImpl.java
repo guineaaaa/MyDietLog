@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,22 @@ public class DietLogServiceImpl implements DietLogService {
 	@Override
 	public List<DietLog> findByUserIdAndDate(int userId, String logDate) {
 		return dietLogDao.findByUserIdAndDate(userId, logDate);
-
+	}
+	
+	public int calculateStreak(int userId) {
+		List<LocalDate> recordedDates=dietLogDao.findRecordedDates(userId);
+		if(recordedDates.isEmpty())return 0;
+		LocalDate today=LocalDate.now();
+		int streak=0;
+		
+		// 오늘부터 거꾸로 연속 체크
+	    for (LocalDate d = today; ; d = d.minusDays(1)) {
+	        if (recordedDates.contains(d)) {
+	            streak++;
+	        } else {
+	            break;
+	        }
+	    }
+	    return streak;
 	}
 }

@@ -53,4 +53,18 @@ public class DietLogDaoImpl implements DietLogDao {
             return log;
         }
     }
+    
+    // Streak 계산용 쿼리: 기록이 있는 날짜를 역순으로 모두 불러오기
+    public List<LocalDate> findRecordedDates(int userId) {
+        String sql = """
+            SELECT log_date FROM (
+                SELECT log_date FROM DietLog WHERE userId=?
+                UNION
+                SELECT log_date FROM ExerciseLog WHERE userId=?
+            ) t
+            GROUP BY log_date
+            ORDER BY log_date DESC
+        """;
+        return jdbcTemplate.query(sql, new Object[]{userId, userId}, (rs, rowNum) -> rs.getDate("log_date").toLocalDate());
+    }
 }
