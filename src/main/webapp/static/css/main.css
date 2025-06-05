@@ -26,6 +26,15 @@ body {
     min-width: 340px;
     max-width: 630px;
 }
+.dash-right {
+    width: 39%;
+    min-width: 260px;
+    max-width: 440px;
+    background: rgba(255,255,255,0.14);
+    border-radius: 16px;
+    padding: 22px 3.5%;
+    box-sizing: border-box;
+}
 
 .user-summary {
     margin-bottom: 14px;
@@ -44,6 +53,13 @@ body {
     margin-bottom: 3.5px;
 }
 
+#calendar-body {
+    width: 100%;
+    min-width: 420px;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
 .calendar-area {
     border: 4px solid #6a472b;
     background: #fffdeb;
@@ -54,8 +70,40 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+	min-width: 420px;
+	width:500px;
 }
 
+.calendar-area > div {
+    width: 440px;
+    min-width: 440px;
+    max-width: 440px;
+    display: block;
+}
+
+
+
+/* 캘린더 헤더 (년월, ◀▶ 버튼) */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+#calendar-year-month {
+    font-size: 2.0rem;
+    color: #4d3922;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.29;
+    letter-spacing: -1.2px;
+    white-space: nowrap;
+    display: inline-block;
+    min-width: 150px;
+}
 .calendar-header button {
     font-size: 1.2rem;
     background: none;
@@ -64,127 +112,13 @@ body {
     color: #4d3922;
     font-weight: bold;
 }
-.calendar-area span {
-    font-size: 2.0rem;
-    color: #4d3922;
-    text-align: center;
-    font-weight: 800;
-    line-height: 1.29;
-    letter-spacing: -1.2px;
-}
-.calendar-grid {
+
+/* 요일 라벨(일~토) grid */
+.calendar-label-row {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
-    background: #fffdeb;
-    padding: 7px;
-    border-radius: 10px;
-}
-
-.calendar-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  font-weight: bold;
-  font-size: 1.4rem;
-  margin-bottom: 8px;
-}
-.calendar-header button {
-  font-size: 1.2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #4d3922;
-  font-weight: bold;
-}
-
-.calendar-day {
-    background: #fff9d0;
-    border-radius: 6px;
-    padding: 10px;
-    text-align: center;
-    font-weight: 600;
-    cursor: pointer;
-    color: #4d3922;
-    transition: background 0.2s;
-}
-
-.calendar-day:hover {
-    background: #ffe083;
-}
-
-.calendar-day.today {
-    border: 2px solid #e5890a;
-}
-
-.calendar-day.selected {
-    background: #ffe083;
-    font-weight: bold;
-    box-shadow: 0 0 4px #d99e2b;
-}
-
-
-
-/* 우측 대시보드 */
-.dash-right {
-    width: 39%;
-    min-width: 260px;
-    max-width: 440px;
-    background: rgba(255,255,255,0.14);
-    border-radius: 16px;
-    padding: 22px 3.5%;
-    box-sizing: border-box;
-}
-
-/* 진행률 바 */
-.progress-bar-area {
-    margin-bottom: 17px;
-}
-.progress-label {
-    font-size: 1.33rem;
-    font-weight: bold;
-    color: #b77719;
-    margin-bottom: 4px;
-    margin-left: 7px;
-    margin-top: 3px;
-}
-.progress-bar-bg {
-    background: #fff;
-    height: 18px;
-    border-radius: 12px;
-    width: 98%;
-    margin-bottom: 4px;
-    box-shadow: 0 1.5px 6px rgba(180,160,90,0.11);
-    position: relative;
-    overflow: hidden;
-}
-.progress-bar-fill {
-    background: #ffe083;
-    height: 100%;
-    border-radius: 12px;
-    transition: width 0.4s;
-}
-.calendar-header {
-  font-weight: bold;
-  font-size: 1.4rem;
-  text-align: center;
-  margin-bottom: 8px;
-}
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  background: #fffdeb;
-  padding: 6px;
-  border-radius: 10px;
-}
-.calendar-label-row {
-    margin-bottom: 1px;
-    padding-bottom: 0;
-    background: none;
-    border: none;
-    gap: 5px;
+    margin-bottom: 7px;
 }
 .calendar-day-label {
     text-align: center;
@@ -195,6 +129,14 @@ body {
     border-radius: 4px;
 }
 
+/* 달력 한 주(행)는 grid 한 번만 정의 */
+.calendar-week-row {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    gap: 5px !important;
+}
+
+/* 날짜 셀 */
 .calendar-day {
     background: #fff9d0;
     border-radius: 6px;
@@ -205,6 +147,8 @@ body {
     color: #4d3922;
     transition: background 0.2s;
     min-height: 38px;
+    border: 2px solid #d8b760;
+    margin-bottom: 2px;
 }
 .calendar-day:hover {
     background: #ffe083;
@@ -217,15 +161,7 @@ body {
     font-weight: bold;
     box-shadow: 0 0 4px #d99e2b;
 }
-.dash-right {
-    width: 39%;
-    min-width: 260px;
-    max-width: 440px;
-    background: rgba(255,255,255,0.14);
-    border-radius: 16px;
-    padding: 22px 3.5%;
-    box-sizing: border-box;
-}
+
 /* 식단/운동 기록 라벨 */
 .record-label {
     background: #ffe083;
@@ -239,49 +175,33 @@ body {
     margin-top: 17px;
     letter-spacing: -1px;
 }
-
-.diet-records, .exercise-records {
-    margin-bottom: 14px;
-    font-size: 1.07rem;
-}
-.diet-records div, .exercise-records div {
-    margin-bottom: 2px;
-    color: #7e5a2a;
-    font-size: 1.08rem;
-    font-weight: 500;
-}
 .record-form {
     background: #fffdeb;
     border: 1.5px solid #d8b760;
     border-radius: 12px;
     padding: 14px;
     margin-top: 22px;
-  }
-  .record-form input,
-  .record-form select {
+}
+.record-form input,
+.record-form select {
     width: 90%;
     padding: 6px;
     margin-bottom: 12px;
     border-radius: 6px;
     border: 1px solid #ccc;
-  }
-  .record-form button {
+}
+.record-form button {
     background-color: #ffe083;
     border: none;
     padding: 8px 14px;
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
-  }
-  .record-form label {
+}
+.record-form label {
     display: block;
     margin-bottom: 4px;
     font-weight: 600;
-  }
-/* 식단/운동 세부 항목 조금 간격 */
-.diet-records > div:not(:first-child),
-.exercise-records > div:not(:first-child) {
-    padding-left: 9px;
 }
 
 @media (max-width: 1000px) {

@@ -14,7 +14,8 @@
             <h1>
                 나만의 식단 기록 &<br>건강 관리 웹서비스
             </h1>
-            <button class="main-btn">회원가입</button>
+            <button class="main-btn"
+			onclick="location.href='/signup'">회원가입</button>
         </div>
         <div class="right-img">
             <img src="/static/img/chick.png" alt="병아리 로고">

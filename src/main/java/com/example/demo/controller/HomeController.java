@@ -45,6 +45,7 @@ public class HomeController {
 
 	@GetMapping("/main")
 	public String main(@RequestParam(value="date", required=false)String date, Model model, HttpSession session) {
+		 System.out.println(">>> /main date 파라미터: " + date); 
 		Integer userId=(Integer) session.getAttribute("userId");
 		if(userId==null) {
 			return "redirect:/login";

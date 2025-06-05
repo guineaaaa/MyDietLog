@@ -20,7 +20,7 @@
 <%@ include file="navbar.jsp" %>
 
 <div class="dashboard-container">
-    <!-- 좌측: 유저 정보 및 캘린더 -->
+    <!-- 왼쪽: 유저 정보 및 캘린더 -->
     <div class="dash-left">
         <div class="user-summary">
             <div><b>${user.username}</b></div>
@@ -32,171 +32,197 @@
             </div>
             <div>다짐: <c:out value="${goal.memo}" /></div>
         </div>
+        <!-- 캘린더 -->
+		<div class="calendar-area">
+		    <div class="calendar-wrapper">
+		        <div class="calendar-header">
+		            <button id="prevMonth">◀</button>
+		            <span id="calendar-year-month"></span>
+		            <button id="nextMonth">▶</button>
+		        </div>
+		        <div class="calendar-label-row">
+		            <div class="calendar-day-label">일</div>
+		            <div class="calendar-day-label">월</div>
+		            <div class="calendar-day-label">화</div>
+		            <div class="calendar-day-label">수</div>
+		            <div class="calendar-day-label">목</div>
+		            <div class="calendar-day-label">금</div>
+		            <div class="calendar-day-label">토</div>
+		        </div>
+		        <div id="calendar-body"></div>
+		    </div>
+		</div>
+		<!-- main.jsp의 <script> 부분만 교체하세요 -->
+			<!-- (중략, 위쪽 JSP 동일) -->
+			<!-- (중략, 위쪽 JSP 동일) -->
+			<script>
+			    // Controller에서 받아온 selectedDate (yyyy-MM-dd)
+			    // EL로 안전하게 처리 (혹시 null이면 오늘)
+			    const selectedDateStr = '${selectedDate}';
+			    // Date 객체로 변환 (JS에서 "yyyy-MM-dd"는 타임존 때문에 하루 차이 날 수 있음, 보정)
+			    function toDate(str) {
+			        // "2025-06-05" -> new Date("2025-06-05T00:00:00")
+			        return str ? new Date(str + 'T00:00:00') : new Date();
+			    }
+			    let selectedDate = toDate(selectedDateStr);
 
-        <!-- 캘린더 영역 -->
-        <div class="calendar-area">
-          <div>
-            <div class="calendar-header">
-              <button id="prevMonth">◀</button>
-              <span id="calendar-year-month"></span>
-              <button id="nextMonth">▶</button>
-            </div>
-            <div class="calendar-grid calendar-label-row">
-              <div class="calendar-day-label">일</div>
-              <div class="calendar-day-label">월</div>
-              <div class="calendar-day-label">화</div>
-              <div class="calendar-day-label">수</div>
-              <div class="calendar-day-label">목</div>
-              <div class="calendar-day-label">금</div>
-              <div class="calendar-day-label">토</div>
-            </div>
-            <div id="calendar-body" class="calendar-grid"></div>
-          </div>
-        </div>
-        <script>
-          // 오늘 날짜(한국 기준)
-          const today = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" }));
-          // 초기 selectedDate 기본값 (없으면 오늘)
-          let selectedDate = "${selectedDate}";
-          if (!selectedDate || selectedDate === "null") {
-            selectedDate = formatDate(today);
-          }
-          let currentMonth = today.getMonth();
-          let currentYear = today.getFullYear();
+			    // 달력 렌더링 기준 월/년
+			    let currentYear = selectedDate.getFullYear();
+			    let currentMonth = selectedDate.getMonth(); // 0~11
 
-          function formatDate(date) {
-            const yyyy = date.getFullYear();
-            const mm = ('0' + (date.getMonth() + 1)).slice(-2);
-            const dd = ('0' + date.getDate()).slice(-2);
-            return `${yyyy}-${mm}-${dd}`;
-          }
+			    function renderCalendar(year, month) {
+			        const calendarBody = document.getElementById('calendar-body');
+			        calendarBody.innerHTML = ''; // 초기화
 
-          function renderRealCalendar(year, month) {
-            const thisMonth = new Date(year, month, 1);
-            const lastDate = new Date(year, month + 1, 0).getDate();
-            const firstDay = thisMonth.getDay();
+			        // 1. 첫 날짜, 마지막 날짜
+			        const firstDay = new Date(year, month, 1);
+			        const lastDay = new Date(year, month + 1, 0); // 이달 마지막 날
 
-            document.getElementById("calendar-year-month").innerText = `${year}년 ${month + 1}월`;
+			        // 2. 요일 라벨이 이미 위에 있다고 가정(생략)
+			        // 3. 몇 줄 그릴지 계산
+			        let startDayOfWeek = firstDay.getDay(); // 0(일)~6(토)
+			        let date = 1;
 
-            const calendarBody = document.getElementById("calendar-body");
-            calendarBody.innerHTML = "";
+			        for (let row = 0; row < 6; row++) {
+			            const weekRow = document.createElement('div');
+			            weekRow.className = 'calendar-week-row';
+			            for (let col = 0; col < 7; col++) {
+			                const dayCell = document.createElement('div');
+			                dayCell.className = 'calendar-day';
 
-            // 날짜/빈칸 배열 생성 (6주=최대 42칸)
-            let daysArr = [];
-            for (let i = 0; i < firstDay; i++) {
-              daysArr.push("");
-            }
-            for (let d = 1; d <= lastDate; d++) {
-              daysArr.push(d);
-            }
-            while (daysArr.length % 7 !== 0) {
-              daysArr.push("");
-            }
+			                if (row === 0 && col < startDayOfWeek) {
+			                    dayCell.innerHTML = ''; // 빈칸
+			                } else if (date > lastDay.getDate()) {
+			                    dayCell.innerHTML = ''; // 다음달 영역
+			                } else {
+			                    // 날짜 출력
+			                    dayCell.textContent = date;
 
-            // 7개씩 한줄(week)로 출력
-            for (let row = 0; row < daysArr.length / 7; row++) {
-              for (let col = 0; col < 7; col++) {
-                const idx = row * 7 + col;
-                const d = daysArr[idx];
-                const dayCell = document.createElement("div");
-                dayCell.className = "calendar-day";
-                if (d !== "") {
-                  dayCell.textContent = d;
-                  // 날짜 포맷
-                  const date = new Date(year, month, d);
-                  const dateStr = formatDate(date);
+			                    // 오늘 or 선택한 날짜 표시
+			                    const thisDate = new Date(year, month, date);
+			                    // 오늘 표시
+			                    const today = new Date();
+			                    if (
+			                        thisDate.getFullYear() === today.getFullYear() &&
+			                        thisDate.getMonth() === today.getMonth() &&
+			                        thisDate.getDate() === today.getDate()
+			                    ) {
+			                        dayCell.classList.add('today');
+			                    }
+			                    // 선택한 날짜 표시
+			                    if (
+			                        thisDate.getFullYear() === selectedDate.getFullYear() &&
+			                        thisDate.getMonth() === selectedDate.getMonth() &&
+			                        thisDate.getDate() === selectedDate.getDate()
+			                    ) {
+			                        dayCell.classList.add('selected');
+			                    }
+			                    // 날짜 클릭 이벤트: 오른쪽 식단/운동 영역 갱신 (or /main?date=...)
+			                    dayCell.style.cursor = 'pointer';
+			                    dayCell.onclick = function() {
+			                        // 1. selectedDate 변수 갱신
+			                        selectedDate = new Date(year, month, date);
+			                        // 2. 달력 새로 그림(선택 강조)
+			                        renderCalendar(year, month);
 
-                  if (dateStr === formatDate(today)) {
-                    dayCell.classList.add("today");
-                  }
-                  if (dateStr === selectedDate) {
-                    dayCell.classList.add("selected");
-                  }
+			                       
+			                    };
+			                    date++;
+			                }
+			                weekRow.appendChild(dayCell);
+			            }
+			            calendarBody.appendChild(weekRow);
+			            if (date > lastDay.getDate()) break; // 끝까지 그리면 종료
+			        }
 
-                  dayCell.addEventListener("click", () => {
-                    selectedDate = dateStr;
-                    document.querySelectorAll(".calendar-day").forEach(cell => cell.classList.remove("selected"));
-                    dayCell.classList.add("selected");
-                    document.querySelectorAll("input[name='date']").forEach(el => el.value = selectedDate);
-                  });
-                } else {
-                  dayCell.innerHTML = "&nbsp;";
-                  dayCell.style.cursor = "default";
-                  dayCell.style.background = "transparent";
-                  dayCell.style.border = "none";
-                }
-                calendarBody.appendChild(dayCell);
-              }
-            }
-          }
+			        // 상단 월/년 표시
+			        document.getElementById('calendar-year-month').textContent =
+			            year + '년 ' + (month + 1) + '월';
+			    }
 
-          document.getElementById("prevMonth").addEventListener("click", () => {
-            currentMonth--;
-            if (currentMonth < 0) {
-              currentMonth = 11;
-              currentYear--;
-            }
-            renderRealCalendar(currentYear, currentMonth);
-          });
+			    // yyyy-MM-dd 포맷 반환
+			    function formatDate(d) {
+			        let mm = d.getMonth() + 1;
+			        let dd = d.getDate();
+			        return (
+			            d.getFullYear() +
+			            '-' +
+			            (mm < 10 ? '0' : '') + mm +
+			            '-' +
+			            (dd < 10 ? '0' : '') + dd
+			        );
+			    }
 
-          document.getElementById("nextMonth").addEventListener("click", () => {
-            currentMonth++;
-            if (currentMonth > 11) {
-              currentMonth = 0;
-              currentYear++;
-            }
-            renderRealCalendar(currentYear, currentMonth);
-          });
+			    document.addEventListener('DOMContentLoaded', function() {
+			        renderCalendar(currentYear, currentMonth);
 
-          // formatDate를 위에서 정의해야 selectedDate 기본값 잘 동작합니다!
-          document.addEventListener("DOMContentLoaded", () => {
-            renderRealCalendar(currentYear, currentMonth);
-          });
-        </script>
+			        document.getElementById('prevMonth').onclick = function() {
+			            currentMonth--;
+			            if (currentMonth < 0) {
+			                currentMonth = 11;
+			                currentYear--;
+			            }
+			            renderCalendar(currentYear, currentMonth);
+			        };
+			        document.getElementById('nextMonth').onclick = function() {
+			            currentMonth++;
+			            if (currentMonth > 11) {
+			                currentMonth = 0;
+			                currentYear++;
+			            }
+			            renderCalendar(currentYear, currentMonth);
+			        };
 
-    <!-- 우측: 진행률, 식단, 운동 -->
+			   
+			    });
+			</script>
+
+
+
+    </div>
+
+    <!-- 오른쪽: 식단, 운동 등록 폼 -->
     <div class="dash-right">
-        <!-- 식단 등록 폼 -->
+        <!-- 식단 등록 -->
         <div class="record-form">
-          <form action="/dietlog/add" method="post">
-            <input type="hidden" name="date" value="${selectedDate}" />
-            <div class="record-label">식단 등록</div>
-            <label>아침</label>
-            <input type="text" name="breakfastFood" placeholder="음식 이름" required />
-            <input type="number" name="breakfastKcal" placeholder="칼로리" required />
+            <form action="/dietlog/add" method="post">
+                <input type="hidden" name="date" value="${selectedDate}" />
+                <div class="record-label">식단 등록</div>
+                <label>아침</label>
+                <input type="text" name="breakfastFood" placeholder="음식 이름" required />
+                <input type="number" name="breakfastKcal" placeholder="칼로리" required />
 
-            <label>점심</label>
-            <input type="text" name="lunchFood" placeholder="음식 이름" required />
-            <input type="number" name="lunchKcal" placeholder="칼로리" required />
+                <label>점심</label>
+                <input type="text" name="lunchFood" placeholder="음식 이름" required />
+                <input type="number" name="lunchKcal" placeholder="칼로리" required />
 
-            <label>저녁</label>
-            <input type="text" name="dinnerFood" placeholder="음식 이름" required />
-            <input type="number" name="dinnerKcal" placeholder="칼로리" required />
+                <label>저녁</label>
+                <input type="text" name="dinnerFood" placeholder="음식 이름" required />
+                <input type="number" name="dinnerKcal" placeholder="칼로리" required />
 
-            <button type="submit">식단 저장</button>
-          </form>
+                <button type="submit">식단 저장</button>
+            </form>
         </div>
-        <!-- 운동 등록 폼 -->
+        <!-- 운동 등록 -->
         <div class="record-form">
-          <form action="/exerciselog/add" method="post">
-            <input type="hidden" name="date" value="${selectedDate}" />
-            <div class="record-label">운동 등록</div>
-            <label>운동명</label>
-            <input type="text" name="exerciseName" placeholder="운동명" required />
+            <form action="/exerciselog/add" method="post">
+                <input type="hidden" name="date" value="${selectedDate}" />
+                <div class="record-label">운동 등록</div>
+                <label>운동명</label>
+                <input type="text" name="exerciseName" placeholder="운동명" required />
 
-            <label>운동 분류</label>
-            <select name="exerciseTypeId" required>
-              <option value="1">근력</option>
-              <option value="2">유산소</option>
-              <option value="3">스트레칭</option>
-              <!-- 필요 시 enum에 따라 옵션 확장 -->
-            </select>
+                <label>운동 분류</label>
+                <select name="exerciseTypeId" required>
+                    <option value="1">근력</option>
+                    <option value="2">유산소</option>
+                    <option value="3">스트레칭</option>
+                </select>
 
-            <label>소모 칼로리</label>
-            <input type="number" name="calorieBurned" placeholder="칼로리" required />
+                <label>소모 칼로리</label>
+                <input type="number" name="calorieBurned" placeholder="칼로리" required />
 
-            <button type="submit">운동 저장</button>
-          </form>
+                <button type="submit">운동 저장</button>
+            </form>
         </div>
     </div>
 </div>
