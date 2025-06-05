@@ -4,7 +4,7 @@ body {
     color: #6a472b;
     margin: 0;
 }
-.daily-layout {
+.monthly-layout {
     width: 90%;
     max-width: 950px;
     margin: 48px auto 0 auto;
@@ -62,21 +62,5 @@ body {
 .report-desc {
     font-size: 17px;
     margin-bottom: 18px;
-}
-.report-today {
-    margin: 10px 0 16px 0;
-    font-size: 16px;
     color: #68481e;
-}
-.kcal-num {
-    font-size: 19px;
-    font-weight: 700;
-    color: #c68b00;
-}
-.report-msg {
-    margin-top: 10px;
-    font-size: 17px;
-    font-weight: 600;
-    color: #e09035;
-    line-height: 1.7;
 }
