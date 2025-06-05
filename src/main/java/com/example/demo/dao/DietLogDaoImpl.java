@@ -67,4 +67,20 @@ public class DietLogDaoImpl implements DietLogDao {
         """;
         return jdbcTemplate.query(sql, new Object[]{userId, userId}, (rs, rowNum) -> rs.getDate("log_date").toLocalDate());
     }
+    
+    public List<DietLog> findByUserIdAndDateRange(int userId, LocalDate start, LocalDate end) {
+        String sql = "SELECT * FROM DietLog WHERE userId=? AND log_date BETWEEN ? AND ?";
+        return jdbcTemplate.query(sql, new Object[]{userId, java.sql.Date.valueOf(start), java.sql.Date.valueOf(end)}, (rs, rowNum) -> {
+            DietLog log = new DietLog();
+            log.setId(rs.getInt("id"));
+            log.setUserId(rs.getInt("userId"));
+            log.setLogDate(rs.getDate("log_date").toLocalDate());
+            log.setMealType(MealType.valueOf(rs.getString("meal_type")));
+            log.setFoodName(rs.getString("food_name"));
+            log.setCalorie(rs.getInt("calorie"));
+            log.setRegTime(rs.getTimestamp("reg_time").toLocalDateTime());
+            return log;
+        });
+    }
+
 }

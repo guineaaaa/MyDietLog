@@ -53,4 +53,8 @@ public class DietLogServiceImpl implements DietLogService {
 	    }
 	    return streak;
 	}
+	
+	public List<DietLog> findByUserIdAndDateRange(int userId, LocalDate start, LocalDate end){
+		return dietLogDao.findByUserIdAndDateRange(userId,  start, end);
+	}
 }

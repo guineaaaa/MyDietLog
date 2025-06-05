@@ -102,6 +102,7 @@ public class HomeController {
 	        dietLogService.addDietLogs(userId, date, breakfastFood, breakfastKcal, lunchFood, lunchKcal, dinnerFood, dinnerKcal);
 	        return "redirect:/main?date=" + date;
 	    }
+	    
 	    // 운동 기록 저장
 	    @PostMapping("/exerciselog/add")
 	    public String addExerciseLog(@RequestParam String date,
