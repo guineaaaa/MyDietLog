@@ -108,10 +108,11 @@ public class HomeController {
 	                                 @RequestParam String exerciseName,
 	                                 @RequestParam Integer exerciseTypeId,
 	                                 @RequestParam Integer calorieBurned,
+	                                 @RequestParam Integer duration,
 	                                 HttpSession session) {
 	        Integer userId = (Integer) session.getAttribute("userId");
 	        if (userId == null) return "redirect:/login";
-	        exerciseLogService.addExerciseLog(userId, date, exerciseName, exerciseTypeId, calorieBurned);
+	        exerciseLogService.addExerciseLog(userId, date, exerciseName, duration,exerciseTypeId, calorieBurned);
 	        return "redirect:/main?date=" + date;
 	    }
 

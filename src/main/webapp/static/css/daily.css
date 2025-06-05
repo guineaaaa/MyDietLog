@@ -1,0 +1,83 @@
+body {
+    background: linear-gradient(135deg, #FFFDE4 0%, #FFE87C 100%);
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #6a472b;
+    margin: 0;
+}
+.daily-layout {
+    width: 90%;
+    max-width: 950px;
+    margin: 48px auto 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 48px;
+}
+.streak-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 220px;
+    background: rgba(255,255,255,0.30);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px #eedc8250;
+    
+	padding: 34px 36px 84px;
+}
+.streak-img {
+    width: 200px;
+	height:200px;
+    margin-bottom: 16px;
+}
+.streak-number {
+    font-size: 48px;
+    font-weight: 800;
+    color: #86621a;
+    margin-top: 12px;
+}
+.streak-label {
+    font-size: 28px;
+    font-weight: 700;
+    color: #86621a;
+    margin-top: 2px;
+}
+.report-card {
+    flex: 1;
+    background: #fffde6cc;
+    border-radius: 18px;
+    padding: 34px 36px;
+    margin-left: 12px;
+    box-shadow: 0 4px 24px #eedc8240;
+    min-width: 340px;
+}
+.report-label {
+    font-weight: 700;
+    font-size: 18px;
+    color: #aa9429;
+    background: #f5de8e;
+    padding: 8px 26px 8px 18px;
+    border-radius: 18px 18px 0 0;
+    display: inline-block;
+    margin-bottom: 18px;
+}
+.report-desc {
+    font-size: 17px;
+    margin-bottom: 18px;
+}
+.report-today {
+    margin: 10px 0 16px 0;
+    font-size: 16px;
+    color: #68481e;
+}
+.kcal-num {
+    font-size: 19px;
+    font-weight: 700;
+    color: #c68b00;
+}
+.report-msg {
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #e09035;
+    line-height: 1.7;
+}

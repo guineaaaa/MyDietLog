@@ -13,8 +13,8 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
     @Autowired private ExerciseLogDao exerciseLogDao;
 
     @Override
-    public void addExerciseLog(int userId, String logDate, String exerciseName, int exerciseTypeId, int calorieBurned) {
-        exerciseLogDao.insert(new ExerciseLog(userId, logDate, exerciseTypeId, exerciseName, calorieBurned));
+    public void addExerciseLog(int userId, String logDate, String exerciseName, int duration, int exerciseTypeId, int calorieBurned) {
+        exerciseLogDao.insert(new ExerciseLog(userId, logDate, exerciseTypeId, exerciseName, duration, calorieBurned));
     }
     
     @Override

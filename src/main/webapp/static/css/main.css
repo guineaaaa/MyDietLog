@@ -19,7 +19,6 @@ body {
     background: rgba(255,255,255,0.08);
     border-radius: 18px;
     min-height: 77vh;
-    box-sizing: border-box;
 }
 .dash-left {
     width: 56%;
@@ -27,12 +26,11 @@ body {
     max-width: 630px;
 }
 .dash-right {
-    width: 39%;
-    min-width: 260px;
-    max-width: 440px;
+    width: 56%;
+	height: 40%;
     background: rgba(255,255,255,0.14);
     border-radius: 16px;
-    padding: 22px 3.5%;
+    padding: 12px 3.5%;
     box-sizing: border-box;
 }
 

@@ -215,6 +215,9 @@
 				        <option value="${type.id}">${type.typeName}</option>
 				    </c:forEach>
 				</select>
+				
+				<label>지속 분</label>
+				<input type="number" name="duration" placeholder="몇 분 지속?" required/>
 
                 <label>소모 칼로리</label>
                 <input type="number" name="calorieBurned" placeholder="칼로리" required />

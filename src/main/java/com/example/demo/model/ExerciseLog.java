@@ -15,11 +15,12 @@ public class ExerciseLog {
 
     public ExerciseLog() {}
 
-    public ExerciseLog(int userId, String logDate, int exerciseTypeId, String exerciseName, int calorieBurned) {
+    public ExerciseLog(int userId, String logDate, int exerciseTypeId, String exerciseName, int duration,int calorieBurned) {
         this.userId = userId;
         this.logDate = LocalDate.parse(logDate);
         this.exerciseTypeId = exerciseTypeId;
         this.exerciseName = exerciseName;
+        this.duration=duration;
         this.calorieBurned = calorieBurned;
     }
 
