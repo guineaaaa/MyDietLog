@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.DietLog;
 import com.example.demo.model.ExerciseLog;
+import com.example.demo.model.ExerciseType;
 import com.example.demo.model.Goal;
 import com.example.demo.model.User;
 import com.example.demo.service.DietLogService;
 import com.example.demo.service.ExerciseLogService;
+import com.example.demo.service.ExerciseTypeService;
 import com.example.demo.service.GoalService;
 import com.example.demo.service.UserService;
 
@@ -36,6 +38,8 @@ public class HomeController {
 	private DietLogService dietLogService;
 	@Autowired
 	private ExerciseLogService exerciseLogService;
+	@Autowired
+	private ExerciseTypeService exerciseTypeService;
 
 	// 랜딩페이지
 	@GetMapping("/")
@@ -51,11 +55,18 @@ public class HomeController {
 			return "redirect:/login";
 		}
 			String selectedDate = (date != null) ? date : LocalDate.now().toString();
-	        User user = userService.findById(userId);
+	        
+			// 사용자의 목표 객체 가져오기
+			User user = userService.findById(userId);
 	        Goal goal = goalService.findLatestGoalByUserId(userId);
+	        
 	        List<DietLog> dietLogs = dietLogService.findByUserIdAndDate(userId, selectedDate);
 	        List<ExerciseLog> exerciseLogs = exerciseLogService.findByUserIdAndDate(userId, selectedDate);
-
+	        
+	        // 메인 페이지에 사용자가 선택 가능한 운동 리스트 가져오기
+	        List<ExerciseType> exerciseTypes=exerciseTypeService.findAll();
+	        model.addAttribute("exerciseTypes", exerciseTypes);
+	        
 	        int progress = goalService.calcGoalProgressPercent(goal);
 
 	        int totalIntake = dietLogs.stream().mapToInt(DietLog::getCalorie).sum();

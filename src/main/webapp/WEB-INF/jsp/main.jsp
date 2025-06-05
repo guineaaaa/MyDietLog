@@ -123,9 +123,7 @@
 			                        // 1. selectedDate 변수 갱신
 			                        selectedDate = new Date(year, month, date);
 			                        // 2. 달력 새로 그림(선택 강조)
-			                        renderCalendar(year, month);
-
-			                       
+			                        renderCalendar(year, month);       
 			                    };
 			                    date++;
 			                }
@@ -211,12 +209,12 @@
                 <label>운동명</label>
                 <input type="text" name="exerciseName" placeholder="운동명" required />
 
-                <label>운동 분류</label>
-                <select name="exerciseTypeId" required>
-                    <option value="1">근력</option>
-                    <option value="2">유산소</option>
-                    <option value="3">스트레칭</option>
-                </select>
+				<label>운동 종류</label>
+				<select name="exerciseTypeId" required>
+				    <c:forEach var="type" items="${exerciseTypes}">
+				        <option value="${type.id}">${type.typeName}</option>
+				    </c:forEach>
+				</select>
 
                 <label>소모 칼로리</label>
                 <input type="number" name="calorieBurned" placeholder="칼로리" required />
