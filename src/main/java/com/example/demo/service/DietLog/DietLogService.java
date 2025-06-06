@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.DietLog;
 
 import java.time.LocalDate;
 import java.util.List;

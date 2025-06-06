@@ -1,12 +1,12 @@
-package com.example.demo.service;
+package com.example.demo.service.User;
 
 import java.time.temporal.ChronoUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.GoalDao;
-import com.example.demo.dao.UserDao;
+import com.example.demo.dao.GoalDao.GoalDao;
+import com.example.demo.dao.User.UserDao;
 import com.example.demo.model.Goal;
 import com.example.demo.model.User;
 import com.example.demo.model.enums.Gender;

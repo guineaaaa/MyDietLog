@@ -17,11 +17,11 @@ import com.example.demo.model.ExerciseLog;
 import com.example.demo.model.ExerciseType;
 import com.example.demo.model.Goal;
 import com.example.demo.model.User;
-import com.example.demo.service.DietLogService;
-import com.example.demo.service.ExerciseLogService;
-import com.example.demo.service.ExerciseTypeService;
-import com.example.demo.service.GoalService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.DietLog.DietLogService;
+import com.example.demo.service.ExerciseLog.ExerciseLogService;
+import com.example.demo.service.ExerciseType.ExerciseTypeService;
+import com.example.demo.service.Goal.GoalService;
+import com.example.demo.service.User.UserService;
 
 import jakarta.servlet.http.HttpSession;
 

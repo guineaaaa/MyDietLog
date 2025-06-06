@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.Goal;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -6,7 +6,7 @@ import java.time.temporal.ChronoUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.GoalDao;
+import com.example.demo.dao.GoalDao.GoalDao;
 import com.example.demo.model.Goal;
 
 @Service

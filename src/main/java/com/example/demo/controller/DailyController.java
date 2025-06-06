@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demo.model.DietLog;
 import com.example.demo.model.ExerciseLog;
 import com.example.demo.model.User;
-import com.example.demo.service.DietLogService;
-import com.example.demo.service.ExerciseLogService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.DietLog.DietLogService;
+import com.example.demo.service.ExerciseLog.ExerciseLogService;
+import com.example.demo.service.User.UserService;
 
 import jakarta.servlet.http.HttpSession;
 

@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.dao.ExerciseType;
 
 import java.util.List;
 import com.example.demo.model.ExerciseType;

@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.dao.ExerciseLog;
 import java.sql.Date;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.dao.GoalDao;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 

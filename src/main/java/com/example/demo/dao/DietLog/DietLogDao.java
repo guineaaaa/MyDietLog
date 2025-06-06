@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.dao.DietLog;
 
 import java.time.LocalDate;
 import java.util.List;

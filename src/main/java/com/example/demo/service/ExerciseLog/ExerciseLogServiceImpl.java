@@ -1,11 +1,11 @@
-package com.example.demo.service;
+package com.example.demo.service.ExerciseLog;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.ExerciseLogDao;
+import com.example.demo.dao.ExerciseLog.ExerciseLogDao;
 import com.example.demo.model.ExerciseLog;
 
 @Service

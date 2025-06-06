@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.model.Goal;
 import com.example.demo.model.enums.GoalType;
-import com.example.demo.service.GoalService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.Goal.GoalService;
+import com.example.demo.service.User.UserService;
 
 import jakarta.servlet.http.HttpSession;
 

@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.Goal;
 
 import com.example.demo.model.Goal;
 

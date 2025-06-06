@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.dao.DietLog;
 
 import com.example.demo.model.DietLog;
 import com.example.demo.model.enums.MealType;

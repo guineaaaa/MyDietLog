@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.dao.GoalDao;
 import com.example.demo.model.Goal;
 
 public interface GoalDao {
