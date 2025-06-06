@@ -6,4 +6,5 @@ import com.example.demo.model.ExerciseType;
 
 public interface ExerciseTypeService {
 	List<ExerciseType> findAll();
+	
 }

@@ -1,0 +1,95 @@
+body {
+    background: linear-gradient(135deg, #FFFDE4 0%, #FFE87C 100%);
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #6a472b;
+    margin: 0;
+}
+
+.exercise-report-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 900px;
+    margin: 48px auto 0 auto;
+    background: #fffbe5;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px 0 #eee;
+    padding: 0;
+    min-height: 370px;
+}
+
+.exercise-type-stats {
+    background: #fefbe1;
+    min-width: 200px;
+    max-width: 210px;
+    padding: 22px 18px 22px 18px;
+    border-radius: 0 20px 20px 0;
+    font-size: 1em;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-right: 1px solid #f2e7a8;
+}
+
+.report-label {
+    font-weight: bold;
+    background: #ffe87c;
+    color: #6a472b;
+    padding: 4px 13px;
+    border-radius: 13px;
+    margin-bottom: 13px;
+    display: inline-block;
+    font-size: 1em;
+}
+
+.exercise-type-stats > div {
+    margin-bottom: 4px;
+}
+
+.exercise-summary-card {
+    flex: 1;
+    padding: 36px 32px 36px 36px;
+    background: #fffde4;
+    border-radius: 0 16px 16px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    min-width: 330px;
+}
+
+.summary-title {
+    font-size: 1.22em;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #8b7d3a;
+}
+
+.summary-main {
+    font-size: 1.11em;
+    margin-bottom: 16px;
+}
+
+.exercise-summary-card > div {
+    margin-bottom: 6px;
+}
+
+@media (max-width: 700px) {
+    .exercise-report-layout {
+        flex-direction: column;
+        min-width: unset;
+        max-width: 98vw;
+    }
+    .exercise-summary-card {
+        padding: 24px 16px;
+        min-width: unset;
+    }
+    .exercise-type-stats {
+        min-width: unset;
+        max-width: unset;
+        padding: 16px;
+        border-radius: 16px 16px 0 0;
+        border-right: none;
+        border-bottom: 1px solid #f2e7a8;
+    }
+}
