@@ -1,3 +1,9 @@
+body {
+    background: linear-gradient(135deg, #FFFDE4 0%, #FFE87C 100%);
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #6a472b;
+    margin: 0;
+}
 .goal-edit-container {
     width: 480px;
     margin: 48px auto 0 auto;
@@ -38,3 +44,26 @@
 .goal-edit-btn:hover {
     background: #ffecb3;
 }
+.goal-row {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 12px;
+}
+
+.goal-input {
+    border: 1.5px solid #eedc82;
+    border-radius: 16px;
+    padding: 16px 22px;
+    font-size: 18px;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.goal-input:focus {
+    border: 1.5px solid #ffe087;
+    box-shadow: 0 2px 10px #ffe08722;
+    outline: none;
+}
+

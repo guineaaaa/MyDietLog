@@ -25,8 +25,11 @@
                 </c:forEach>
             </select>
         </div>
-        <label>다짐</label>
-        <input type="text" name="memo" value="${goal.memo}" placeholder="다짐을 적어봐요!" maxlength="100"/>
+		<label for="memo" class="memo-label">다짐</label>
+		<input type="text" name="memo" id="memo"
+		       class="goal-input"
+		       value="${goal.memo}" 
+		       placeholder="다짐을 적어봐요!" maxlength="100"/>
         <button type="submit" class="goal-edit-btn">수정</button>
     </form>
 </div>
