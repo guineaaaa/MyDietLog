@@ -52,9 +52,6 @@
 		        <div id="calendar-body"></div>
 		    </div>
 		</div>
-		<!-- main.jsp의 <script> 부분만 교체하세요 -->
-			<!-- (중략, 위쪽 JSP 동일) -->
-			<!-- (중략, 위쪽 JSP 동일) -->
 			<script>
 			    // Controller에서 받아온 selectedDate (yyyy-MM-dd)
 			    // EL로 안전하게 처리 (혹시 null이면 오늘)

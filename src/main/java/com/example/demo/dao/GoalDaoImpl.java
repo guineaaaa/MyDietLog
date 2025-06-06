@@ -47,4 +47,16 @@ public class GoalDaoImpl implements GoalDao{
             return null; // 목표가 없으면 null 반환
         }
     }
+    @Override
+    public void update(Goal goal) {
+        String sql = "UPDATE Goal SET goal_weight=?, goal_type=?, memo=?, start_date=?, end_date=? WHERE id=?";
+        jdbcTemplate.update(sql,
+            goal.getGoalWeight(),
+            goal.getGoalType().name(),
+            goal.getMemo(),
+            goal.getStartDate(),
+            goal.getEndDate(),
+            goal.getId()
+        );
+    }
 }

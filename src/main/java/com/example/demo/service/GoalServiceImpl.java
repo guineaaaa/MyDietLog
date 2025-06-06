@@ -28,4 +28,9 @@ public class GoalServiceImpl implements GoalService {
         if (percent > 100) percent = 100;
         return percent;
     }
+    
+    @Override
+    public void updateGoal(Goal goal) {
+    	goalDao.update(goal);
+    }
 }
