@@ -13,6 +13,7 @@ import com.example.demo.model.dto.ExerciseReportDto;
 import com.example.demo.service.ExerciseLog.ExerciseLogService;
 import com.example.demo.service.User.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -25,7 +26,7 @@ public class ExerciseReportController {
 	// GET /exercise → 바로 운동 요약 페이지
 	@GetMapping("/exercise")
 	public String showMonthlyReport(@RequestParam(value = "year", required = false) Integer year,
-			@RequestParam(value = "month", required = false) Integer month, HttpSession session, Model model) {
+			@RequestParam(value = "month", required = false) Integer month, HttpSession session, HttpServletRequest request, Model model) {
 		Integer userId = (Integer) session.getAttribute("userId");
 		if (userId == null)
 			return "redirect:/login";
@@ -40,6 +41,9 @@ public class ExerciseReportController {
 		// JSP에서 ${user.username} 사용 가능하게 user 정보도 넘김
 		User user = userService.findById(userId);
 		model.addAttribute("user", user);
+		
+		 // 현재 경로 넘기기 (navbar)
+        model.addAttribute("currentPath", request.getServletPath());
 
 		return "exerciseReport"; // /WEB-INF/jsp/exerciseReport.jsp
 	}

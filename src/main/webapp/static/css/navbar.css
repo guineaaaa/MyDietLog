@@ -15,6 +15,12 @@
     margin-right: 36px;
     flex-shrink: 0;
     letter-spacing: -1px;
+	text-decoration: none; 
+}
+.navbar .logo.active {
+	border-radius: 8px;
+	color: #af9600;
+	font-weight: bold;
 }
 
 .navbar .nav-links {
@@ -32,6 +38,11 @@
 }
 .navbar .nav-links a:hover { color: #b59b0c; }
 
+.nav-links a.active {
+    border-radius: 8px;
+    color: #af9600;
+    font-weight: bold;
+}
 .navbar .nav-btn {
     background: #ffe083;
     border: none;

@@ -1,4 +1,5 @@
 package com.example.demo.controller;
+import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class DailyController {
 	private ExerciseLogService exerciseLogService;
 	
 	@GetMapping("/daily")
-	public String dailyReport(Model model, HttpSession session) {
+	public String dailyReport(Model model, HttpSession session, HttpServletRequest request) {
 		Integer userId=(Integer)session.getAttribute("userId");
 		if(userId==null) {
 			return "redirect:/login";
@@ -68,6 +69,9 @@ public class DailyController {
         model.addAttribute("diff", diff);
         model.addAttribute("calorieMsg", calorieMsg);
         model.addAttribute("streak", streak);
+        
+        // 현재 경로 넘기기 (navbar)
+        model.addAttribute("currentPath", request.getServletPath());
 
         return "daily";
 	}

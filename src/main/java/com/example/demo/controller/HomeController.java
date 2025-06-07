@@ -23,6 +23,7 @@ import com.example.demo.service.ExerciseType.ExerciseTypeService;
 import com.example.demo.service.Goal.GoalService;
 import com.example.demo.service.User.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -48,7 +49,7 @@ public class HomeController {
 	}
 
 	@GetMapping("/main")
-	public String main(@RequestParam(value="date", required=false)String date, Model model, HttpSession session) {
+	public String main(@RequestParam(value="date", required=false)String date, Model model, HttpSession session, HttpServletRequest request) {
 		 System.out.println(">>> /main date 파라미터: " + date); 
 		Integer userId=(Integer) session.getAttribute("userId");
 		if(userId==null) {
@@ -85,6 +86,9 @@ public class HomeController {
 	        model.addAttribute("selectedDate", selectedDate);
 	        model.addAttribute("netCalorie", netCalorie);
 	        model.addAttribute("targetCalorie", targetCalorie);
+	        
+	     // 현재 경로 넘기기 (navbar)
+	        model.addAttribute("currentPath", request.getServletPath());
 
 	        return "main"; // main.jsp로 이동
 	    

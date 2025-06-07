@@ -12,6 +12,7 @@ import com.example.demo.model.enums.GoalType;
 import com.example.demo.service.Goal.GoalService;
 import com.example.demo.service.User.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 /**
@@ -29,14 +30,19 @@ public class GoalController {
 	// 목표 수정 폼 - 현재 목표 보여주기
     // 1. 목표 수정 폼 - 현재 목표를 보여줌
     @GetMapping("/goal")
-    public String showGoalEditForm(Model model, HttpSession session) {
+    public String showGoalEditForm(Model model, HttpSession session, HttpServletRequest request) {
         Integer userId = (Integer) session.getAttribute("userId");
         if (userId == null) return "redirect:/login";
 
         Goal goal = goalService.findLatestGoalByUserId(userId);
         model.addAttribute("goal", goal);
         model.addAttribute("goalTypes", GoalType.values());
+     // 현재 경로 넘기기 (navbar)
+        model.addAttribute("currentPath", request.getServletPath());
+
         return "goal"; 
+        
+        
     }
     
     // 2. 목표 수정 처리 

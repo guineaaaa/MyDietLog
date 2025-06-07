@@ -1,13 +1,21 @@
-<!-- src/main/webapp/WEB-INF/jsp/navbar.jsp -->
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="navbar">
-    <span class="logo" style="cursor:pointer;" onclick="location.href='/main'">MyDietLog</span>
+	<a href="/main" class="logo ${currentPath == '/main' ? 'active' : ''}">MyDietLog</a>
+
     <div class="nav-links">
-        <a href="/daily">daily</a>
-        <a href="/weekly">weekly</a>
-        <a href="/monthly">monthly</a>
-        <a href="/goal">goal</a>
-		<a href="/exercise">exercise</a>
+        <a href="/daily"   class="${currentPath == '/daily'   ? 'active' : ''}">daily</a>
+        <a href="/weekly"  class="${currentPath == '/weekly'  ? 'active' : ''}">weekly</a>
+        <a href="/monthly" class="${currentPath == '/monthly' ? 'active' : ''}">monthly</a>
+        <a href="/goal"    class="${currentPath == '/goal'    ? 'active' : ''}">goal</a>
+        <a href="/exercise" class="${currentPath == '/exercise' ? 'active' : ''}">exercise</a>
     </div>
-    <button class="nav-btn" onclick="location.href='/login'">로그인</button>
+    <c:choose>
+        <c:when test="${not empty sessionScope.userId}">
+            <button class="nav-btn" onclick="location.href='/logout'">로그아웃</button>
+        </c:when>
+        <c:otherwise>
+            <button class="nav-btn" onclick="location.href='/login'">로그인</button>
+        </c:otherwise>
+    </c:choose>
 </div>

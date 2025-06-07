@@ -15,6 +15,7 @@ import com.example.demo.model.User;
 import com.example.demo.service.DietLog.DietLogService;
 import com.example.demo.service.User.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -25,7 +26,7 @@ public class MonthlyController {
 	private DietLogService dietLogService;
 	
 	@GetMapping("/monthly")
-	public String monthlyReport(Model model, HttpSession session) {
+	public String monthlyReport(Model model, HttpSession session, HttpServletRequest request) {
 		Integer userId=(Integer) session.getAttribute("userId");
 		if(userId==null) {
 			return "redirect:/login";
@@ -61,6 +62,10 @@ public class MonthlyController {
         model.addAttribute("recordedDays", recordedDays);
         model.addAttribute("totalCalorie", totalCalorie);
         model.addAttribute("avgCalorie", avgCalorie);
+        
+     // 현재 경로 넘기기 (navbar)
+        model.addAttribute("currentPath", request.getServletPath());
+
 
         return "monthly"; 
 	}
