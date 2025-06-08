@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
      */
 	@Override
 	public int insertUser(User user) {
-	    String sql = "INSERT INTO User (username, loginId, password, gender, height, weight, age, recommended_calorie) VALUES (?, ?, ?, ?,?, ?, ?,?)";
+	    String sql = "INSERT INTO User (username, loginId, password, gender, height, weight, age, activity_level, recommended_calorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	    GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 	    jdbcTemplate.update(con -> {
 	        PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -36,11 +36,11 @@ public class UserDaoImpl implements UserDao {
 	        ps.setString(4, user.getGender().name());
 	        ps.setInt(5, user.getHeight());
 	        ps.setInt(6, user.getWeight());
-	        ps.setInt(7, user.getAge()); 
-	        ps.setInt(8, user.getRecommendedCalorie());
+	        ps.setInt(7, user.getAge());
+	        ps.setObject(8, user.getActivityLevel()); // Double이므로 setObject!
+	        ps.setInt(9, user.getRecommendedCalorie());
 	        return ps;
 	    }, keyHolder);
-	    // 생성된 PK(id)를 반환
 	    return keyHolder.getKey().intValue();
 	}
 
@@ -50,24 +50,26 @@ public class UserDaoImpl implements UserDao {
      * @param loginId   조회할 사용자의 로그인 ID
      * @return          해당 loginId를 가진 User 객체 (없으면 예외 발생)
      */
-    @Override
-    public User findByLoginId(String loginId) {
-        String sql = "SELECT * FROM User WHERE loginId = ?";
-        // 쿼리 실행 후, 결과 ResultSet을 User 객체로 매핑
-        return jdbcTemplate.queryForObject(sql, new Object[]{loginId}, (rs, rowNum) -> {
-            User user = new User();
-            user.setId(rs.getInt("id"));
-            user.setUsername(rs.getString("username"));
-            user.setLoginId(rs.getString("loginId"));
-            user.setPassword(rs.getString("password"));
-            user.setGender(rs.getString("gender"));
-            user.setHeight(rs.getInt("height"));
-            user.setWeight(rs.getInt("weight"));
-            user.setAge(rs.getInt("age"));
-            user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
-            return user;
-        });
-    }
+	@Override
+	public User findByLoginId(String loginId) {
+	    String sql = "SELECT * FROM User WHERE loginId = ?";
+	    return jdbcTemplate.queryForObject(sql, new Object[]{loginId}, (rs, rowNum) -> {
+	        User user = new User();
+	        user.setId(rs.getInt("id"));
+	        user.setUsername(rs.getString("username"));
+	        user.setLoginId(rs.getString("loginId"));
+	        user.setPassword(rs.getString("password"));
+	        user.setGender(rs.getString("gender"));
+	        user.setHeight(rs.getInt("height"));
+	        user.setWeight(rs.getInt("weight"));
+	        user.setAge(rs.getInt("age"));
+	        user.setActivityLevel(rs.getObject("activity_level", Double.class)); // ← 추가
+	        user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
+	        user.setRecommendedCalorie(rs.getInt("recommended_calorie"));
+	        return user;
+	    });
+	}
+
     
     /**
      * loginId와 password가 일치하는 사용자를 조회한다.
@@ -80,7 +82,6 @@ public class UserDaoImpl implements UserDao {
 	public User findByLoginIdAndPassword(String loginId, String password) {
 	    String sql = "SELECT * FROM User WHERE loginId = ? AND password = ?";
 	    try {
-	    	// 아이디와 비밀번호가 일치하는 사용자 반환
 	        return jdbcTemplate.queryForObject(sql, new Object[]{loginId, password}, (rs, rowNum) -> {
 	            User user = new User();
 	            user.setId(rs.getInt("id"));
@@ -91,13 +92,16 @@ public class UserDaoImpl implements UserDao {
 	            user.setHeight(rs.getInt("height"));
 	            user.setWeight(rs.getInt("weight"));
 	            user.setAge(rs.getInt("age"));
+	            user.setActivityLevel(rs.getObject("activity_level", Double.class)); // ← 추가
 	            user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
+	            user.setRecommendedCalorie(rs.getInt("recommended_calorie"));
 	            return user;
 	        });
 	    } catch (Exception e) {
-	        return null; // 로그인 실패 시 null 반환
+	        return null;
 	    }
 	}
+
 	
     /**
      * PK(id)로 사용자 정보를 조회한다.
@@ -114,10 +118,11 @@ public class UserDaoImpl implements UserDao {
 	        user.setUsername(rs.getString("username"));
 	        user.setLoginId(rs.getString("loginId"));
 	        user.setPassword(rs.getString("password"));
-	        user.setGender(rs.getString("gender")); // String → Enum
+	        user.setGender(rs.getString("gender"));
 	        user.setHeight(rs.getInt("height"));
 	        user.setWeight(rs.getInt("weight"));
 	        user.setAge(rs.getInt("age"));
+	        user.setActivityLevel(rs.getObject("activity_level", Double.class)); // ← 추가
 	        user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
 	        user.setRecommendedCalorie(rs.getInt("recommended_calorie"));
 	        return user;

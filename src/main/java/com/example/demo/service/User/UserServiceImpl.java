@@ -40,11 +40,9 @@ public class UserServiceImpl implements UserService {
         long days = ChronoUnit.DAYS.between(goal.getStartDate(), goal.getEndDate()) + 1;
         if (days < 1) days = 1;
 
-        // [1] 감량/증량 목표(kg)
-        double kgDelta = Math.abs(goal.getGoalWeight()); // 입력값이 음수면 Math.abs로 처리 (일관성 위해)
+        double kgDelta = Math.abs(goal.getGoalWeight());
         if (kgDelta <= 0) throw new IllegalArgumentException("감량/증량 kg 수가 0 이상이어야 합니다.");
 
-        // [2] 증/감량 타입에 따라 계산
         double weeks = days / 7.0;
         if (goal.getGoalType() == GoalType.LOSE && kgDelta / weeks > 1.0) {
             throw new IllegalArgumentException("건강을 위해 감량 목표는 1주 1kg 이하로 설정하세요.");
@@ -53,16 +51,16 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("건강을 위해 증량 목표는 1주 0.5kg 이하로 설정하세요.");
         }
 
-        // [3] 표준 BMR 공식 적용
         double bmr;
         if (user.getGender() == Gender.MALE) {
             bmr = 10 * user.getWeight() + 6.25 * user.getHeight() - 5 * user.getAge() + 5;
         } else {
             bmr = 10 * user.getWeight() + 6.25 * user.getHeight() - 5 * user.getAge() - 161;
         }
-        double recommendedCalorie = bmr * 1.2;
 
-        // [4] 감량/증량 목표 반영
+        double activityLevel = (user.getActivityLevel() != null) ? user.getActivityLevel() : 1.2;
+        double recommendedCalorie = bmr * activityLevel;
+
         int deltaCalorie = (int) Math.round((kgDelta * 7700) / days);
         if (goal.getGoalType() == GoalType.GAIN) {
             recommendedCalorie += Math.min(deltaCalorie, 500);
@@ -70,12 +68,12 @@ public class UserServiceImpl implements UserService {
             recommendedCalorie -= Math.min(deltaCalorie, 500);
         }
 
-        // [5] 하한선 적용
         int minCalorie = (user.getGender() == Gender.MALE) ? 2200 : 1600;
         if (recommendedCalorie < minCalorie) recommendedCalorie = minCalorie;
 
         return (int) Math.round(recommendedCalorie);
     }
+
 
 
     @Override

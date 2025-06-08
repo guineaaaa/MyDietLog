@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import java.time.LocalDateTime;
-import com.example.demo.model.enums.Gender; 
+import com.example.demo.model.enums.Gender;
 
 public class User {
 	private int id; // PK
@@ -11,6 +11,7 @@ public class User {
 	private Gender gender;
 	private Integer height;
 	private Integer weight;
+	private Double activityLevel;
 	private Integer age;
 	private LocalDateTime regDate;
 	private Integer recommendedCalorie;
@@ -47,15 +48,19 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
-	
-    public Gender getGender() { return gender; }
-    public void setGender(String gender) {
-        if (gender != null) {
-            this.gender = Gender.valueOf(gender.toUpperCase());
-        } else {
-            this.gender = null;
-        }
-    }
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		if (gender != null) {
+			this.gender = Gender.valueOf(gender.toUpperCase());
+		} else {
+			this.gender = null;
+		}
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -76,14 +81,22 @@ public class User {
 		this.weight = weight;
 	}
 
+	public Double getActivityLevel() {
+		return activityLevel;
+	}
+
+	public void setActivityLevel(Double activityLevel) {
+		this.activityLevel = activityLevel;
+	}
+
 	public Integer getAge() {
 		return age;
 	}
-	
+
 	public void setAge(Integer age) {
-		this.age=age;
+		this.age = age;
 	}
-	
+
 	public LocalDateTime getRegDate() {
 		return regDate;
 	}
@@ -91,14 +104,13 @@ public class User {
 	public void setRegDate(LocalDateTime regDate) {
 		this.regDate = regDate;
 	}
-	
-    public Integer getRecommendedCalorie() {
-        return recommendedCalorie;
-    }
-    public void setRecommendedCalorie(Integer recommendedCalorie) {
-        this.recommendedCalorie = recommendedCalorie;
-    }
-    
-    
+
+	public Integer getRecommendedCalorie() {
+		return recommendedCalorie;
+	}
+
+	public void setRecommendedCalorie(Integer recommendedCalorie) {
+		this.recommendedCalorie = recommendedCalorie;
+	}
 
 }

@@ -37,7 +37,16 @@
             
             <label>몸무게</label>
             <input type="number" name="weight" required>
-            
+			
+			<label>하루 활동량</label>
+			<select name="activityLevel" required>
+			  <option value="1.2">매우 낮음 (거의 운동 안함)</option>
+			  <option value="1.375">낮음 (주 1~3회 운동)</option>
+			  <option value="1.55">보통 (주 3~5회 운동)</option>
+			  <option value="1.725">높음 (주 6~7회 운동)</option>
+			  <option value="1.9">매우 높음</option>
+			</select>
+			
 			<label>나이</label>
 			<input type="number" name="age" min="10" max="99" required>
 			
