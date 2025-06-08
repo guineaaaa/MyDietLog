@@ -7,4 +7,5 @@ public interface UserService {
 	void registerUserWithGoal(User user, Goal goal);
 	User login(String loginId, String password);
 	User findById(int userId);
+	
 }
