@@ -35,8 +35,10 @@ public class UserServiceImpl implements UserService {
         goalDao.insertGoal(goal);
     }
     
-    // 권장 칼로리 산출만 담당하는 private 메소드
-    private int calculateRecommendedCalorie(User user, Goal goal) {
+    // 권장 칼로리 산출만 담당
+    // 재사용성 증가, 의존성 없는 도구로 쓰기 위해 static으로 선언
+    // GoalService에서 이후 목표 수정 시 이 함수를 다시 호출한다.
+    public static int calculateRecommendedCalorie(User user, Goal goal) {
         long days = ChronoUnit.DAYS.between(goal.getStartDate(), goal.getEndDate()) + 1;
         if (days < 1) days = 1;
 

@@ -128,5 +128,9 @@ public class UserDaoImpl implements UserDao {
 	        return user;
 	    });
 	}
-
+	@Override
+	public void updateRecommendedCalorie(int userId, int calorie) {
+	    String sql = "UPDATE User SET recommended_calorie = ? WHERE id = ?";
+	    jdbcTemplate.update(sql, calorie, userId);
+	}
 }
