@@ -11,6 +11,7 @@ public class User {
 	private Gender gender;
 	private Integer height;
 	private Integer weight;
+	private Integer age;
 	private LocalDateTime regDate;
 	private Integer recommendedCalorie;
 
@@ -75,6 +76,14 @@ public class User {
 		this.weight = weight;
 	}
 
+	public Integer getAge() {
+		return age;
+	}
+	
+	public void setAge(Integer age) {
+		this.age=age;
+	}
+	
 	public LocalDateTime getRegDate() {
 		return regDate;
 	}
@@ -89,5 +98,7 @@ public class User {
     public void setRecommendedCalorie(Integer recommendedCalorie) {
         this.recommendedCalorie = recommendedCalorie;
     }
+    
+    
 
 }

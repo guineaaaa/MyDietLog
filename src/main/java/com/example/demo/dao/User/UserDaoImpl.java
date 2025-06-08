@@ -26,17 +26,18 @@ public class UserDaoImpl implements UserDao {
      */
 	@Override
 	public int insertUser(User user) {
-	    String sql = "INSERT INTO User (username, loginId, password, gender, height, weight, recommended_calorie) VALUES (?, ?, ?, ?, ?, ?,?)";
+	    String sql = "INSERT INTO User (username, loginId, password, gender, height, weight, age, recommended_calorie) VALUES (?, ?, ?, ?, ?, ?,?)";
 	    GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 	    jdbcTemplate.update(con -> {
 	        PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 	        ps.setString(1, user.getUsername());
 	        ps.setString(2, user.getLoginId());
 	        ps.setString(3, user.getPassword());
-	        ps.setString(4, user.getGender().name()); // 추가
+	        ps.setString(4, user.getGender().name());
 	        ps.setInt(5, user.getHeight());
 	        ps.setInt(6, user.getWeight());
-	        ps.setInt(7, user.getRecommendedCalorie());
+	        ps.setInt(7, user.getAge()); 
+	        ps.setInt(8, user.getRecommendedCalorie());
 	        return ps;
 	    }, keyHolder);
 	    // 생성된 PK(id)를 반환
@@ -62,6 +63,7 @@ public class UserDaoImpl implements UserDao {
             user.setGender(rs.getString("gender"));
             user.setHeight(rs.getInt("height"));
             user.setWeight(rs.getInt("weight"));
+            user.setAge(rs.getInt("age"));
             user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
             return user;
         });
@@ -114,6 +116,7 @@ public class UserDaoImpl implements UserDao {
 	        user.setGender(rs.getString("gender")); // String → Enum
 	        user.setHeight(rs.getInt("height"));
 	        user.setWeight(rs.getInt("weight"));
+	        user.setAge(rs.getInt("age"));
 	        user.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
 	        user.setRecommendedCalorie(rs.getInt("recommended_calorie"));
 	        return user;
