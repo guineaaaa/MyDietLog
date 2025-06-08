@@ -38,6 +38,9 @@
             <label>몸무게</label>
             <input type="number" name="weight" required>
             
+			<label>나이</label>
+			<input type="number" name="age" min="10" max="99" required>
+			
             <!-- 목표 -->
             <label>목표</label>
             <div class="goal-row">
