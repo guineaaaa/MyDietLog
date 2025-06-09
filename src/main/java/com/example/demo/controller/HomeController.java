@@ -104,7 +104,7 @@ public class HomeController {
 	        Integer userId = (Integer) session.getAttribute("userId");
 	        if (userId == null) return "redirect:/login";
 	        dietLogService.addDietLogs(userId, date, breakfastFood, breakfastKcal, lunchFood, lunchKcal, dinnerFood, dinnerKcal);
-	        return "redirect:/main?date=" + date;
+	        return "redirect:/main";
 	    }
 	    
 	    // 운동 기록 저장
@@ -118,7 +118,7 @@ public class HomeController {
 	        Integer userId = (Integer) session.getAttribute("userId");
 	        if (userId == null) return "redirect:/login";
 	        exerciseLogService.addExerciseLog(userId, date, exerciseName, duration,exerciseTypeId, calorieBurned);
-	        return "redirect:/main?date=" + date;
+	        return "redirect:/main";
 	    }
 
 	
