@@ -1,23 +1,25 @@
 # 🐤 MyDietLog
 ### SpringBoot+JSP 기반 나만의 식단 기록 & 영양 관리 웹서비스
+- 1인 개발 팀 프로젝트
+- 프로젝트 진행 기간: 2~3주
+  
 ![image](https://github.com/user-attachments/assets/694a5669-c510-479e-b74c-dc3c24a0e084)
-
 # 🏗️ IA
 ![Flowchart](https://github.com/user-attachments/assets/c0f5fbd8-0017-4973-9aae-fc24cf506e0f)
 # ✨ 주요 기능
 - 회원가입/로그인/로그아웃
+- 목표 및 사용자 맞춤 일일 권장 칼로리 계산
+- 월별/일별/월간 Report 제공, Streak 및 출석 기록
 - 식단 기록 (아침/점심/저녁/기타), 칼로리 합산
 - 운동 기록 (카테고리 분류), 칼로리 소모 합산
-- 월별/일별/월간 Report 제공, Streak 및 출석 기록
-- 목표 및 사용자 맞춤 일일 권장 칼로리 계산
 - JSP/Servlet + JSTL 기반의 Spring MVC 구조
 # 🔨 Tech Stack
-- Backend: Spring Boot 3.x (MVC 패턴)
-- Frontend: JSP, JSTL, CSS, JS (정적 리소스)
-- Database: MySQL
-- ORM/DAO: Spring JDBC, 직접 구현 DAO
-- Build/Deploy: Maven, WAR 패키징, 내장 Tomcat
-- Java: 17
+- `Backend`: Spring Boot 3.x (MVC 패턴)
+- `Frontend`: JSP, JSTL, CSS, JS (정적 리소스)
+- `Database`: MySQL
+- `ORM/DAO`: Spring JDBC, 직접 구현 DAO
+- `Build/Deploy`: Maven, WAR 패키징, 내장 Tomcat
+- `Java`: 17
 # 📁 프로젝트 구조
 ```
 MyDietLog/
