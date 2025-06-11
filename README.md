@@ -1,7 +1,8 @@
-# 🐤 MyDietLog
-### SpringBoot+JSP 기반 나만의 식단 기록 & 영양 관리 웹서비스
-- 1인 개발 팀 프로젝트
-- 프로젝트 진행 기간: 2~3주
+# 🐤 MyDietLog - SpringBoot+JSP 기반 나만의 식단 기록 & 영양 관리 웹서비스
+### Final project for a university course on the Spring Framework 
+**🍴 A personal diet tracking and nutrition/health management web service**
+- 1인 개발 프로젝트
+- 프로젝트 진행 기간: 2주
   
 ![image](https://github.com/user-attachments/assets/694a5669-c510-479e-b74c-dc3c24a0e084)
 # 🏗️ IA
